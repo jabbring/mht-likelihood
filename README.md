@@ -3,16 +3,17 @@
 This repository contains MATLAB code for replicating the numerical results in [Abbring and Salimans (2021)](https://arxiv.org/abs/1905.03463). This covers the computation of the likelihood of the [mixed hitting-time model](http://jaap.abbring.org/images/pdf/ecta7312.pdf), maximum likelihood estimation of parametric versions of this model, and an application to the analysis of [Kennan's (1985) strike data](https://www.ssc.wisc.edu/~jkennan/research/JEM85.pdf).
 
 ## Contents
-To replicate [Abbring and Salimans (2021)](https://arxiv.org/abs/1905.03463), run the MATLAB script `replicate.m`. 
+Use `make` to replicate [Abbring and Salimans (2021)](https://arxiv.org/abs/1905.03463). This runs the following MATLAB scripts:
 
-### Scripts for replication subtasks
-These scripts are called by `replicate.m`. Adapt them to apply the code in other settings.
-- `figure1.m`
-- `figure2.m`
-- `figure3.m`
-- `simulateEstimate.m`
-- `table1.m`
-- `table1robustness.m`
+- `figure1.m` -  replicates Figure 1
+- `figure2.m` -  replicates Figure 2
+- `figure3.m` -  replicates Figure 3
+- `simulateEstimate.m` - simulates data and estimates the model on these data
+- `table1.m` - replicates Table 1
+- `table1lowM` - recalculates Table 1 with a lower value of the design parameter `M`
+- `table1BM.m` - recalculates Columns I-V of table one using the exact likelihood for the Gaussian case
+
+Adapt these scripts to perform similar tasks in other contexts.
 
 ### Functions for maximum likelihood estimation
 - `mhtMaxLikelihood.m` - general case (based on Laplace inversion)
