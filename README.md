@@ -2,13 +2,24 @@
 
 This repository contains MATLAB code for replicating the numerical results in [Abbring and Salimans (2021)](https://arxiv.org/abs/1905.03463). This covers the computation of the likelihood of the [mixed hitting-time model](http://jaap.abbring.org/images/pdf/ecta7312.pdf), maximum likelihood estimation of parametric versions of this model, and an application to the analysis of [Kennan's (1985) strike data](https://www.ssc.wisc.edu/~jkennan/research/JEM85.pdf).
 
-## Contents
-To replicate [Abbring and Salimans (2021)](https://arxiv.org/abs/1905.03463), run the following scripts:
-- `figure1.m`
--
--
+To replicate [Abbring and Salimans (2021)](https://arxiv.org/abs/1905.03463), run the MATLAB script `replicate.m`. 
 
-###
+### Scripts for replication subtasks
+These scripts are called by `replicate.m`. Adapt them to apply the code in other settings.
+- `figure1.m`
+- `figure2.m`
+- `figure3.m`
+- `simulateEstimate.m`
+- `table1.m`
+- `table1robustness.m`
+
+### Maximum likelihood estimation
+- `mhtMaxLikelihood.m` -
+- `mhtMaxLikBM.m` -
+
+### Likelihood calculation
+- `minusLoglikelihood.m` - 
+- `minusLoglikBM.m` -
 
 ### Specifications
 Each parametric specification of the model is coded up in a file `<heter><shocks>.m` as a function `<heter><shocks>`  that calculates the Laplace transform of .... 
@@ -20,7 +31,10 @@ for a model with unobserved heterogeneity specification `<heter>` and shock spec
 
 Users can extend the set of specifications by adding different functions `<heter><shocks>`.
 
-### Auxiliary functions
+### Utilities
+- `igausscdf.m`
+- `igausspdf.m`
+- `randraw.m`
 
 ### Data
 - `strdur.asc` - Fixed format text file with [Kennan's (1985) strike data](https://www.ssc.wisc.edu/~jkennan/research/JEM85.pdf) (source: [Cameron and Trivedi’s, 2005, data sets page](http://cameron.econ.ucdavis.edu/mmabook/mmadata.html)).
