@@ -15,7 +15,7 @@ Use `make` to replicate [Abbring and Salimans (2021)](https://arxiv.org/abs/1905
 
 Users can adapt these scripts to apply the procedures they call in other contexts. The scripts require a range of functions and a data set.
 
-### Specification, likelihood calculation, and maximum likelihood estimation
+### 1. Model specification
 
 The procedures require parametric specifications `<heter>` of the unobserved heterogeneity specification and `<shocks>` of the jumps in the latent Lévy process. The calculation of the Laplace transform of .. for each such specification is coded up as a function `<heter><shocks>` in a file `<heter><shocks>.m`:
 
@@ -26,23 +26,23 @@ The procedures require parametric specifications `<heter>` of the unobserved het
 
 Users can extend the set of specifications by adding different functions `<heter><shocks>`.
 
-### Likelihood calculation
+### 2. Likelihood calculation
 
 - `minusLoglikelihood.m` - function that returns minus the log likelihood (calculated by Laplace transform inversion)
 - `minusLoglikBM.m` - function that returns minus the log likelihood (calculated using explicit expressions for the Gaussian case)
 
-### Maximum likelihood estimation
+### 3. Maximum likelihood estimation
 
 - `mhtMaxLikelihood.m` - general case (based on Laplace inversion)
 - `mhtMaxLikBM.m` - Gaussian special case
 
-### Auxiliary functions
+### 4. Auxiliary functions
 
 - `igausscdf.m`n - inverse Gaussian cdf
 - `igausspdf.m` - inverse Gaussian pdf
 - `randraw.m` -  random draws from ...
 
-### Data
+### 5. Data
 
 - `strdur.asc` - Fixed format text file with [Kennan's (1985) strike data](https://www.ssc.wisc.edu/~jkennan/research/JEM85.pdf) (source: [Cameron and Trivedi’s, 2005, data sets page](http://cameron.econ.ucdavis.edu/mmabook/mmadata.html)).
 
