@@ -1,6 +1,11 @@
 # Matlab Code for "The Likelihood of Mixed Hitting Times"
 ## Jaap Abbring and Tim Salimans
 
-This repository contains MATLAB code for computing the likelihood of a mixed hitting-time model that specifies durations as the first time a latent Lévy process crosses a heterogeneous threshold. This likelihood is not generally known in closed form, but its Laplace transform is. Our approach to its computation relies on numerical methods for inverting Laplace transforms that exploit special properties of the first passage times of Lévy processes. We use our method to implement a maximum likelihood estimator of the mixed hitting-time model. We illustrate the application of this estimator with an analysis of Kennan’s (1985) strike data.
+This repository contains MATLAB code for replicating the numerical results in Abbring and Salimans (2021). This covers the computation of the likelihood of the mixed hitting-time model (Abbring, 2012), maximum likelihood estimation of parametric versions of this model, and an application to the analysis of Kennan's (1985) strike data.
 
+### Contents
 
+### References
+* Abbring, Jaap H. (2012), “[Mixed hitting-time models](http://jaap.abbring.org/images/pdf/ecta7312.pdf)”, *Econometrica*, 80, 783–819.
+* Abbring, Jaap H., and Tim Salimans (2021), “[The likelihood of mixed hitting times](https://arxiv.org/abs/1905.03463)”, *Journal of Econometrics*, forthcoming. arXiv:1905.03463 \[econ.EM\].
+* Kennan, John (1985), "[The duration of contract strikes in U.S. manufacturing](https://www.ssc.wisc.edu/~jkennan/research/JEM85.pdf)", *Journal of Econometrics*, 28, 5–28.
