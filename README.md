@@ -14,15 +14,15 @@ These scripts are called by `replicate.m`. Adapt them to apply the code in other
 - `table1.m`
 - `table1robustness.m`
 
-### Maximum likelihood estimation
-- `mhtMaxLikelihood.m` -
-- `mhtMaxLikBM.m` -
+### Functions for maximum likelihood estimation
+- `mhtMaxLikelihood.m` - general case (based on Laplace inversion)
+- `mhtMaxLikBM.m` - Gaussian special case
 
-### Likelihood calculation
-- `minusLoglikelihood.m` - 
-- `minusLoglikBM.m` -
+### Functions for Minus Log Likelihood calculation functions
+- `minusLoglikelihood.m` - function that returns minus the log likelihood (calculated by Laplace transform inversion)
+- `minusLoglikBM.m` - function that returns minus the log likelihood (calculated using explicit expressions for the Gaussian case)
 
-### Specifications
+### Specification functions
 Each parametric specification of the model is coded up in a file `<heter><shocks>.m` as a function `<heter><shocks>`  that calculates the Laplace transform of .... 
 for a model with unobserved heterogeneity specification `<heter>` and shock specification `<shocks>`:
 - `pointpoint.m` - Discrete heterogeneity and discrete shocks at Poisson times
@@ -32,10 +32,10 @@ for a model with unobserved heterogeneity specification `<heter>` and shock spec
 
 Users can extend the set of specifications by adding different functions `<heter><shocks>`.
 
-### Utilities
-- `igausscdf.m`
-- `igausspdf.m`
-- `randraw.m`
+### Auxiliary functions
+- `igausscdf.m`n - inverse Gaussian cdf
+- `igausspdf.m` - inverse Gaussian pdf
+- `randraw.m` -  random draws from ...
 
 ### Data
 - `strdur.asc` - Fixed format text file with [Kennan's (1985) strike data](https://www.ssc.wisc.edu/~jkennan/research/JEM85.pdf) (source: [Cameron and Trivedi’s, 2005, data sets page](http://cameron.econ.ucdavis.edu/mmabook/mmadata.html)).
