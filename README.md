@@ -1,4 +1,6 @@
-# The Likelihood of Mixed Hitting Times
+# Matlab Code for "The Likelihood of Mixed Hitting Times"
 ## Jaap Abbring and Tim Salimans
 
-This repository containst the source and pdf files for the paper "The Likelihood of Mixed Hitting Times". Currently, it only contains the LaTeX and BibTeX source files and the data (generated with MATLAB code still stored elsewhere under CVS/SVN) needed to compile the paper submitted to JOE. The next step will be to migrate the MATLAB code as well and bundle it in a proper replication package.
+This repository contains MATLAB code for computing the likelihood of a mixed hitting-time model that specifies durations as the first time a latent Lévy process crosses a heterogeneous threshold. This likelihood is not generally known in closed form, but its Laplace transform is. Our approach to its computation relies on numerical methods for inverting Laplace transforms that exploit special properties of the first passage times of Lévy processes. We use our method to implement a maximum likelihood estimator of the mixed hitting-time model. We illustrate the application of this estimator with an analysis of Kennan’s (1985) strike data.
+
+
