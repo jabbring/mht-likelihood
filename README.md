@@ -31,28 +31,35 @@ Users can extend the set of specifications by adding different functions `<heter
 
 ### 2. Probability densities and cumulate distributions
 
-- 'numinvlap.m' - 
-- 'numinvlap2.m' - idem, but with input of design parameter 'M'
+- `numinvlap.m` - mixed hitting time pdf (calculated by Laplace transform inversion)
+- `numinvlap2.m` - idem, but with input of design parameter `M`
 - `igausscdf.m` - inverse Gaussian cdf
 - `igausspdf.m` - inverse Gaussian pdf
-### 2. Likelihood calculation
 
-- `minusLoglikelihood.m` - function that returns minus the log likelihood (calculated by Laplace transform inversion)
-- `minusLoglikBM.m` - function that returns minus the log likelihood (calculated using explicit expressions for the Gaussian case)
+### 3. Likelihood calculation
 
-### 3. Maximum likelihood estimation
+- `mhtobj.m` - minus the log likelihood (calculated by Laplace transform inversion)
+- `lhmigauss.m` - likelihood (calculated using explicit expressions for the Gaussian case)
+- `nllhmigauss.m` - minus the log likelihood (calculated using explicit expressions for the Gaussian case)
+
+### 4. Maximum likelihood estimation
 
 - `mhtmle.m` - general case (based on Laplace inversion)
 - `migaussmle.m` - Gaussian special case
 
-### 4. Auxiliary functions
+### 5. Simulation
 
+- `randraw.m` -  efficient random number generator (by Alex Bar Guy and Alexander Podgaetsky)
+- `simmht.m` - simulates durations from mixed hitting time model
 
-- `randraw.m` -  random draws from ...
-
-### 5. Data
+### 6. Data
 
 - `strdur.asc` - Fixed format text file with [Kennan's (1985) strike data](https://www.ssc.wisc.edu/~jkennan/research/JEM85.pdf) (source: [Cameron and Trivedi’s, 2005, data sets page](http://cameron.econ.ucdavis.edu/mmabook/mmadata.html)).
+
+### 7. Plot functions
+
+- `llhplot.m` - called from `figure1.m`
+- `scatterplot.m` - called from `figure2.m`
 
 ## References
 - Abbring, Jaap H., and Tim Salimans (2021), “[The likelihood of mixed hitting times](https://arxiv.org/abs/1905.03463)”, *Journal of Econometrics*, forthcoming. arXiv:1905.03463 \[econ.EM\].
