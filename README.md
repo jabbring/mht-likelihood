@@ -8,10 +8,13 @@ Use `make` to replicate [Abbring and Salimans (2021)](https://arxiv.org/abs/1905
 - `figure1.m` -  replicates Figure 1
 - `figure2.m` -  replicates Figure 2
 - `figure3.m` -  replicates Figure 3
-- `simulateEstimate.m` - simulates data and estimates the model on these data
 - `table1.m` - replicates Table 1
 - `table1lowM` - recalculates Table 1 with a lower value of the design parameter `M`
 - `table1BM.m` - recalculates Columns I-V of table one using the exact likelihood for the Gaussian case
+
+The repository also contains a script
+
+- `simtest.m` - simulates data and estimates the model on these data
 
 Users can adapt these scripts to apply the procedures they call in other contexts. The scripts require a range of functions and a data set.
 
@@ -26,6 +29,12 @@ The procedures require parametric specifications `<heter>` of the unobserved het
 
 Users can extend the set of specifications by adding different functions `<heter><shocks>`.
 
+### 2. Probability densities and cumulate distributions
+
+- 'numinvlap.m' - 
+- 'numinvlap2.m' - idem, but with input of design parameter 'M'
+- `igausscdf.m` - inverse Gaussian cdf
+- `igausspdf.m` - inverse Gaussian pdf
 ### 2. Likelihood calculation
 
 - `minusLoglikelihood.m` - function that returns minus the log likelihood (calculated by Laplace transform inversion)
@@ -33,13 +42,12 @@ Users can extend the set of specifications by adding different functions `<heter
 
 ### 3. Maximum likelihood estimation
 
-- `mhtMaxLikelihood.m` - general case (based on Laplace inversion)
-- `mhtMaxLikBM.m` - Gaussian special case
+- `mhtmle.m` - general case (based on Laplace inversion)
+- `migaussmle.m` - Gaussian special case
 
 ### 4. Auxiliary functions
 
-- `igausscdf.m`n - inverse Gaussian cdf
-- `igausspdf.m` - inverse Gaussian pdf
+
 - `randraw.m` -  random draws from ...
 
 ### 5. Data
