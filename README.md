@@ -3,6 +3,7 @@
 This repository contains MATLAB code for replicating the numerical results in [Abbring and Salimans (2021)](https://arxiv.org/abs/1905.03463). This covers the computation of the likelihood of the [mixed hitting-time model](http://jaap.abbring.org/images/pdf/ecta7312.pdf), maximum likelihood estimation of parametric versions of this model, and an application to the analysis of [Kennan's (1985) strike data](https://www.ssc.wisc.edu/~jkennan/research/JEM85.pdf).
 
 ## Contents
+
 Use `make` to replicate [Abbring and Salimans (2021)](https://arxiv.org/abs/1905.03463). This runs the following MATLAB scripts:
 
 - `figure1.m` -  replicates Figure 1
@@ -52,14 +53,14 @@ Users can extend the set of specifications by adding different functions `<heter
 - `randraw.m` -  efficient random number generator (by Alex Bar Guy and Alexander Podgaetsky)
 - `simmht.m` - simulates durations from mixed hitting time model
 
-### 6. Data
-
-- `strdur.asc` - Fixed format text file with [Kennan's (1985) strike data](https://www.ssc.wisc.edu/~jkennan/research/JEM85.pdf) (source: [Cameron and Trivedi’s, 2005, data sets page](http://cameron.econ.ucdavis.edu/mmabook/mmadata.html)).
-
-### 7. Plot functions
+### 6. Plot functions
 
 - `llhplot.m` - called from `figure1.m`
 - `scatterplot.m` - called from `figure2.m`
+
+### 7. Data
+
+- `strdur.asc` - Fixed format text file with [Kennan's (1985) strike data](https://www.ssc.wisc.edu/~jkennan/research/JEM85.pdf) (source: [Cameron and Trivedi’s, 2005, data sets page](http://cameron.econ.ucdavis.edu/mmabook/mmadata.html)).
 
 ## References
 - Abbring, Jaap H., and Tim Salimans (2021), “[The likelihood of mixed hitting times](https://arxiv.org/abs/1905.03463)”, *Journal of Econometrics*, forthcoming. arXiv:1905.03463 \[econ.EM\].
