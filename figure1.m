@@ -26,6 +26,7 @@ y=rawdata(:,1);
 cens=false(length(y),1);
 
 for j=1:100
+fprintf('.');
 %% parameters analytical, estimated or start
 
 if est
@@ -64,12 +65,12 @@ p=p(2:end);
 par2=[log(var); p; log(v); beta];
 
 %% test
-tic
+%tic
 a_probs=lhmigauss(parMLE,y,cens,x,nrunobs);
-toc
-tic
+%toc
+%tic
 n_probs=numinvlap(@pointpoint,par2,y,cens,x,nrunobs,nrshocks)./y;
-toc
+%toc
 errs=[a_probs abs(a_probs-n_probs) abs(a_probs-n_probs)./n_probs];
 maxerrs=max(errs);
 meanerrs=mean(abs(errs));
@@ -81,15 +82,16 @@ for i=1:30
     le{j}(i)=log(abs(sum(log(numinvlap2(@pointpoint,par2,y,i,cens,x,nrunobs,nrshocks)./y))-sum(log(a_probs))));
 end
 end
+fprintf('\n');
 lerr=zeros(30,1);
 for j=1:100
     lerr=lerr+le{j}/100;
 end
-llhplot(exp(lerr))
+%llhplot(exp(lerr))
 
 %% Export data to csv file for TikZ
 
-f1=fopen('mhtellherr.csv','w');
+f1=fopen('fig1.csv','w');                % mhtellherr.csv
 fprintf(f1,'M, llherr, dummy\n');
 fprintf(f1,'%6.0f, %6.6f, 1.0\n',[(1:30)' lerr/log(10)]');
 fclose(f1);

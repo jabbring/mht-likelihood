@@ -61,30 +61,30 @@ max_duration=max(y)
 %% inverse LT
 
 % smoothing
-figure(1)
+%figure(1)
 [fsmooth,xi] = ksdensity(log(y),'kernel','epanechnikov','width',5*sqrt(mean(log(y).^2)-mean(log(y))^2)/sqrt(n),'npoints',nbins);
 probs=numinvlap(eval(['@' unobstype shocktype]),par,exp(xi'),false,ones(length(xi),1),nrunobs,nrshocks);
-plot(xi,fsmooth,xi,probs)
+%plot(xi,fsmooth,xi,probs)
 
 % histogram
-figure(2)
-hold off
+%figure(2)
+%hold off
 intervalsize = (xi(end)-xi(1))/(nbins-1);
 xibounds = xi-intervalsize/2:intervalsize:xi(end)+intervalsize/2;
 nr=histc(log(y),xibounds); 
 fhist=nr(1:end-1)'/length(y)/intervalsize;
-bar((xibounds(2:end)+xibounds(1:end-1))/2,fhist,'FaceColor',[0 0 1],'EdgeColor',[1 1 1],'BarWidth',0.5);
-hold on
-plot(xi,probs,'LineWidth',2,'Color','green');
+%bar((xibounds(2:end)+xibounds(1:end-1))/2,fhist,'FaceColor',[0 0 1],'EdgeColor',[1 1 1],'BarWidth',0.5);
+%hold on
+%plot(xi,probs,'LineWidth',2,'Color','green');
 
 %% Export data to csv files for TikZ
 
-f1=fopen('mchist.csv','w');
+f1=fopen('fig3hist.csv','w'); % mchist.csv
 fprintf(f1,'logtlow, hist, dummy\n');
 fprintf(f1,'%6.6f, %6.6f, 1.0\n',[xibounds' [fhist';NaN]]');
 fclose(f1);
 
-f1=fopen('mcinvlap.csv','w');
+f1=fopen('fig3invlap.csv','w'); % mcinvlap.csv
 fprintf(f1,'logt, smooth, invlt, dummy\n');
 fprintf(f1,'%6.6f, %6.6f, %6.6f, 1.0\n',[xi' fsmooth' probs]');
 fclose(f1);
