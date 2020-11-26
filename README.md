@@ -55,8 +55,8 @@ Users can extend the set of specifications by adding different functions `<heter
 
 ### 6. Plot functions
 
-- `llhplot.m` - called from `figure1.m`
-- `scatterplot.m` - called from `figure2.m`
+- `llhplot.m` - called from `figure1.m` if `dispplot=true` (default: `false`)
+- `scatterplot.m` - called from `figure2.m` if `dispplot=true` (default: `false`)
 
 ### 7. Data
 
