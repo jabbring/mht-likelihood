@@ -91,8 +91,6 @@ for j=1:100
 end
 if dispplot
     llhplot(exp(lerr))
-else
-    disp('[figure1.m] dispplot=false (set to true to have script plot results)')
 end
 
 %% Export data to csv file for TikZ

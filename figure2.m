@@ -18,8 +18,6 @@ lap=-0.5*log(2*pi)-1.5*log(y)-(y-1).^2./(2.*y);
 err=abs(lnp-lap);
 if dispplot
     scatterplot(lap,err)
-else
-    disp('[figure2.m] dispplot=false (set to true to have script plot results)')
 end
 
 
