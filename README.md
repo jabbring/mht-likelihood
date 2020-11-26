@@ -9,7 +9,7 @@ Use `make` to replicate [Abbring and Salimans (2021)](https://arxiv.org/abs/1905
 - `figure1.m` -  replicates Figure 1
 - `figure2.m` -  replicates Figure 2
 - `figure3.m` -  replicates Figure 3
-- `table1.m` - replicates Table 1
+- `table1.m` - replicates Table 1 and Figure 4
 - `table1BM.m` - recalculates Columns I-V of table one using the exact likelihood for the Gaussian case
 - `table1lowM` - recalculates Table 1 with a lower value of the design parameter `M`
 
