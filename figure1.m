@@ -9,6 +9,8 @@ clc
 format long
 
 %% settings
+dispplot = false; % set to true to have script plot results
+
 nrunobs=1;
 nrshocks=0;
 est=0;
@@ -87,7 +89,11 @@ lerr=zeros(30,1);
 for j=1:100
     lerr=lerr+le{j}/100;
 end
-%llhplot(exp(lerr))
+if dispplot
+    llhplot(exp(lerr))
+else
+    disp('[figure1.m] dispplot=false (set to true to have script plot results)')
+end
 
 %% Export data to csv file for TikZ
 

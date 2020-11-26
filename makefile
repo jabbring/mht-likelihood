@@ -26,6 +26,7 @@ fig3hist.csv fig3invlap.csv: figure3.m
 replication.pdf: $(figobjects) replication.tex
 	pdflatex $(texopt) $(rfile).tex
 	pdflatex $(texopt) $(rfile).tex
+	open $(rfile).pdf
 	rm -f $(texobjects)
 
 clean:

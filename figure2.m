@@ -3,12 +3,24 @@
 % - Approximation Error of the Log Inverse Gaussian Density Function
 % //////////////////////////////////////////////////////////////////////
 
+%% clear screen and workspace
+clear
+clc
 format long
+
+%% settings
+dispplot = false; % set to true to have script plot results
+
+%% calculate approximations
 y=(0.1:0.1:44)';
 lnp=log(numinvlap2(@pointpoint,[0; 0],y,25,false,[],1,0)./y);
 lap=-0.5*log(2*pi)-1.5*log(y)-(y-1).^2./(2.*y);
 err=abs(lnp-lap);
-%scatterplot(lap,err)
+if dispplot
+    scatterplot(lap,err)
+else
+    disp('[figure2.m] dispplot=false (set to true to have script plot results)')
+end
 
 
 %% Export data to csv file for TikZ
