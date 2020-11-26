@@ -1,8 +1,13 @@
+rfile = replication
+
+texopt = -interaction=batchmode
+
 figobjects = fig1.csv fig2.csv fig3hist.csv fig3invlap.csv 
     # mhtellherr.csv mhteproberr.csv mchist.csv mcinvlap.csv
 
-all: figures
-	echo here come the tables
+texobjects = $(rfile).aux $(rfile).brf $(rfile).log $(rfile).out
+
+all: figures $(rfile).pdf
 
 figures: $(figobjects)
 
@@ -18,12 +23,17 @@ fig3hist.csv fig3invlap.csv: figure3.m
 #tables: tab1.tex
 #	$(here come the tables)
 
+replication.pdf: $(figobjects) replication.tex
+	pdflatex $(texopt) $(rfile).tex
+	pdflatex $(texopt) $(rfile).tex
+	rm -f $(texobjects)
+
 clean:
-	rm -f $(figobjects) figure3.out
+	rm -f $(figobjects) figure3.out $(texobjects) $(rfile).pdf
 
 git:
 	git add .
 	git commit -m"Lazy add, commit, and push (via make)"
 	git push
 	
-.PHONY: clean git
+.PHONY: figures clean git
