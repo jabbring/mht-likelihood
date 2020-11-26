@@ -17,6 +17,10 @@ and displays the resulting figures and tables in a pdf file `replication.pdf`.
 
 ![output example](replicationexample.png)
 
+As an extra check, the scripts for computing Figures 1 and 2 can be adapted, by changing `dispplot=false` into `dispplot=true`, to plot these figures directly. This uses the following functions:
+- `llhplot.m` - called from `figure1.m` if `dispplot=true` (default: `false`)
+- `scatterplot.m` - called from `figure2.m` if `dispplot=true` (default: `false`)
+
 The repository also contains a script
 
 - `simtest.m` - simulates data and estimates the model on these data
@@ -57,13 +61,7 @@ Users can extend the set of specifications by adding different functions `<heter
 - `randraw.m` -  efficient random number generator (by Alex Bar Guy and Alexander Podgaetsky)
 - `simmht.m` - simulates durations from mixed hitting time model
 
-### 6. Plot functions
-
-As an extra check, the scripts for computing Figures 1 and 2 can be adapted, by changing `dispplot=false` into `dispplot=true`, to plot these figures. This uses the following functions:
-- `llhplot.m` - called from `figure1.m` if `dispplot=true` (default: `false`)
-- `scatterplot.m` - called from `figure2.m` if `dispplot=true` (default: `false`)
-
-### 7. Data
+### 6. Data
 
 - `strdur.asc` - Fixed format text file with [Kennan's (1985) strike data](https://www.ssc.wisc.edu/~jkennan/research/JEM85.pdf) (source: [Cameron and Trivedi’s, 2005, data sets page](http://cameron.econ.ucdavis.edu/mmabook/mmadata.html)).
 
