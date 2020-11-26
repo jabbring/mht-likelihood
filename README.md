@@ -59,7 +59,7 @@ Users can extend the set of specifications by adding different functions `<heter
 
 ### 6. Plot functions
 
-As an extra check, the scripts for computing Figures 1 and 2 can be adapted to plot these figures (by changing `dispplot=false` into `dispplot=true`). This uses the following functions:
+As an extra check, the scripts for computing Figures 1 and 2 can be adapted, by changing `dispplot=false` into `dispplot=true`, to plot these figures. This uses the following functions:
 - `llhplot.m` - called from `figure1.m` if `dispplot=true` (default: `false`)
 - `scatterplot.m` - called from `figure2.m` if `dispplot=true` (default: `false`)
 
