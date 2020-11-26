@@ -4,7 +4,7 @@ This repository contains MATLAB code for replicating the numerical results in [A
 
 ## Contents
 
-Use `make` to replicate [Abbring and Salimans (2021)](https://arxiv.org/abs/1905.03463). This runs the following MATLAB scripts:
+Use `make` to replicate [Abbring and Salimans (2021)](https://arxiv.org/abs/1905.03463). This runs the following MATLAB scripts
 
 - `figure1.m` -  replicates Figure 1
 - `figure2.m` -  replicates Figure 2
@@ -12,6 +12,10 @@ Use `make` to replicate [Abbring and Salimans (2021)](https://arxiv.org/abs/1905
 - `table1.m` - replicates Table 1
 - `table1BM.m` - recalculates Columns I-V of table one using the exact likelihood for the Gaussian case
 - `table1lowM` - recalculates Table 1 with a lower value of the design parameter `M`
+
+and displays the resulting tables and figures in a pdf file `replication.odf`.
+
+![output example](replicationexample.png)
 
 The repository also contains a script
 
