@@ -13,7 +13,7 @@ Use `make` to replicate [Abbring and Salimans (2021)](https://arxiv.org/abs/1905
 - `table1BM.m` - recalculates Columns I-V of table one using the exact likelihood for the Gaussian case
 - `table1lowM` - recalculates Table 1 with a lower value of the design parameter `M`
 
-and displays the resulting tables and figures in a pdf file `replication.pdf`.
+and displays the resulting figures and tables in a pdf file `replication.pdf`.
 
 ![output example](replicationexample.png)
 
@@ -25,7 +25,7 @@ Users can adapt these scripts to apply the procedures they call in other context
 
 ### 1. Model specification
 
-The procedures require parametric specifications `<heter>` of the unobserved heterogeneity specification and `<shocks>` of the jumps in the latent Lévy process. The calculation of the Laplace transform of .. for each such specification is coded up as a function `<heter><shocks>` in a file `<heter><shocks>.m`:
+The procedures require parametric specifications `<heter>` of the unobserved heterogeneity specification and `<shocks>` of the jumps in the latent Lévy process. The calculation of the Laplace transform of the mixed survival function for each such specification is coded up as a function `<heter><shocks>` in a file `<heter><shocks>.m`:
 
 - `pointpoint.m` - Discrete heterogeneity and discrete shocks at Poisson times
 - `pointgamma.m` - Discrete heterogeneity and gamma shocks at Poisson times
@@ -59,6 +59,7 @@ Users can extend the set of specifications by adding different functions `<heter
 
 ### 6. Plot functions
 
+As an extra check, the scripts for computing Figures 1 and 2 can be adapted to plot these figures (by changing `dispplot=false` into `dispplot=true`). This uses the following functions:
 - `llhplot.m` - called from `figure1.m` if `dispplot=true` (default: `false`)
 - `scatterplot.m` - called from `figure2.m` if `dispplot=true` (default: `false`)
 
