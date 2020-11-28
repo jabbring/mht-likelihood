@@ -14,7 +14,8 @@ all: figures $(rfile).pdf
 
 help:
 	@echo "----------------------------------------------------------------"
-	@echo "Replicate 'The Likelihood of Mixed Hitting Times'               "
+	@echo "Replication of 'The Likelihood of Mixed Hitting Times'          "
+	@echo "  Jaap H. Abbring and Tim Salimans                              "
 	@echo "----------------------------------------------------------------"
 	@echo ""
 	@echo " make all   --  replicate all tables & figures and display them "
@@ -22,10 +23,14 @@ help:
 	@echo " make clean --  remove all output files                         "
 	@echo ""
 
+data: strkdur.asc
+	@echo "WARNING: DATA FILE WAS MODIFIED"
+
+
 # replication figures
 figures: $(figobjects)
 
-fig1.csv: figure1.m strkdur.asc
+fig1.csv: figure1.m data
 	matlab -batch figure1
 
 fig2.csv: figure2.m

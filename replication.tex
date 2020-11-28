@@ -152,6 +152,44 @@ This document contains replications of all results in \citet{jem21:abbringsalima
 \end{centering}
 \end{figure}
 
+%\input{table1}
+
+
+\begin{figure}[t]
+\caption{Aggregate Strike End Hazard Rates\label{fig:strikehazard}}
+\begin{centering}
+\begin{tikzpicture}
+\tikzstyle{every axis x label}=[yshift=-5pt]
+   \begin{axis}[width=15cm,height=7.2cm,
+        name=strikes,
+        ylabel={Hazard rate per week},
+        xlabel={Strike duration in weeks},
+        axis x line=bottom,
+        every outer x axis line/.append style={-,color=gray,line width=0.75pt},
+        axis y line=left,
+        every outer y axis line/.append style={-,color=gray,line width=0.75pt},
+        xtick={4,8,12,16,20,24,28,32},
+        xticklabels={$4$,$8$,$12$,$16$,$20$,$24$,$28$,$32$},
+        ytick={0,0.1,0.2,0.3,0.4,0.5,0.6},
+        yticklabels={$0$,$0.1$,$0.2$,$0.3$,$0.4$,$0.5$,$0.6$},
+        major tick length=2.5mm,
+        every tick/.append style={line width=0.75pt},
+        ymin=0,
+        ymax=0.6,
+        xmin=0,
+        xmax=38,
+        scaled ticks=false,
+        /pgf/number format/precision=2,
+        /pgf/number format/set thousands separator={}]
+        %Hazard paths.
+        \addplot[color=red!75,smooth,line width=0.75pt] table[x=t,y=mht,col sep=space]{fig4.txt} (axis cs: 35.3,0.34) node[color=red!75]{MHT};
+        \addplot[color=blue!75,smooth,line width=0.75pt] table[x=t,y=mph,col sep=space]{strikes/hazard.txt} (axis cs: 35.3,0.22) node[color=blue!75]{MPH};
+        \addplot[color=green!75,smooth,line width=0.75pt] table[x=t,y=data,col sep=space]{strikes/hazard.txt} (axis cs: 35.3,0.5) node[color=green!75]{Data};
+\end{axis}
+\end{tikzpicture}
+\end{centering}
+\end{figure}
+
 
 \clearpage
 
@@ -165,7 +203,7 @@ Abbring, J.~H. and T.~Salimans (2021a).
 \bibitem[\protect\citeauthoryear{Abbring and Salimans}{Abbring and Salimans}{2021b}]{zenodo21:abbringsalimans} 
 Abbring, J.~H. and T.~Salimans (2021b).
 \newblock The likelihood of mixed hitting times: Replication package.
-\newblock \href{https://doi.org/10.5281/zenodo.4287734}{doi:10.5281/zenodo.4287734} [v1.0.0].
+\newblock \href{https://doi.org/10.5281/zenodo.4287734}{doi:10.5281/zenodo.4287734}.
 
 \end{thebibliography}
 \end{document}

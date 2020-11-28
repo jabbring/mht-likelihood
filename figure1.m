@@ -27,6 +27,8 @@ x=rawdata(:,2);
 y=rawdata(:,1);
 cens=false(length(y),1);
 
+timea = [];
+timen = [];
 for j=1:100
 fprintf('.');
 %% parameters analytical, estimated or start
@@ -67,12 +69,12 @@ p=p(2:end);
 par2=[log(var); p; log(v); beta];
 
 %% test
-%tic
+tic
 a_probs=lhmigauss(parMLE,y,cens,x,nrunobs);
-%toc
-%tic
+timea=[timea;toc];
+tic
 n_probs=numinvlap(@pointpoint,par2,y,cens,x,nrunobs,nrshocks)./y;
-%toc
+timen=[timen;toc];
 errs=[a_probs abs(a_probs-n_probs) abs(a_probs-n_probs)./n_probs];
 maxerrs=max(errs);
 meanerrs=mean(abs(errs));
@@ -92,6 +94,9 @@ end
 if dispplot
     llhplot(exp(lerr))
 end
+fprintf('Mean time (analytical): %0.5e seconds\n',mean(timea));
+fprintf('Mean time (numerical inversion): %0.5e seconds\n',mean(timen));
+fprintf('Mean time numerical =  %6.2f x mean time analytical\n',mean(timen)/mean(timea));
 
 %% Export data to csv file for TikZ
 
