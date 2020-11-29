@@ -18,19 +18,18 @@ y=rawdata(:,1)/7;
 estimates=nan(6,15);
 stderrors=estimates;
 loglik=nan(6,1);
+optres=loglik;
 estimates(:,1)=ones(6,1); % mu
 stderrors(:,1)=zeros(6,1);
-rng(230670); % seed for random start values
 % Columns I-VI
 for i = 1:6
     fprintf('Calculating Table 1 Column %1d\n',i)
     L = min(i,5); % nrunobs
     Q = max(i-5,0); % nrshocks
-    [est,ses,llh,opt]=mhtmle(y,false,x,'point','point',L,Q);
+    [est,ses,ll,opt]=mhtmle(y,false,x,'point','point',L,Q)
     % last 4 arguments are: unobs_type, shock_type, nrunobs (L), nrshocks 
     % (Q); unobs_type and shock_type can be either 'gamma' or 'point'
-    disp(opt)
-    loglik(i)=llh;
+    loglik()i
     estimates(i,2)=est.bm_var; % sigma^2
     if Q>0
         estimates(i,3)=est.shock_lambda;
@@ -46,13 +45,6 @@ for i = 1:6
         stderrors(i,4)=ses.shock_nu;
     end
     stderrors(i,5)=ses.beta; 
-    stderrors(i,6:5+L)=ses.unobs_v(srtidx);
+    stderrors(i,6:5+L)=ses.unobs_v(stdidx);
     stderrors(i,11:10+L)=ses.unobs_p(srtidx);
 end
-
-%% Export tex file with Table 1
-
-f1=fopen('table1.tex','w'); 
-fprintf(f1,'logtlow, hist, dummy\n');
-fprintf(f1,'%6.6f, %6.6f, 1.0\n',[xibounds' [fhist';NaN]]');
-fclose(f1);

@@ -10,25 +10,25 @@ clc
 format short
 
 %% parameters
-n=1e5 % sample size
-neval = 250
-nbins = 100
+n=1e3; % sample size
+neval = 250;
+nbins = 100;
 k=1; % number of regressors
-var=1
+var=1;
 
-unobstype='point'
+unobstype='point';
 unobs_form=unobstype;
-nrunobs=2
+nrunobs=2;
 v=[1; 5];
 p=[0.7; 0.3];
 
-shocktype='gamma'
+shocktype='gamma';
 unobs_shock=shocktype;
-nrshocks=1
-lambda=1
-nu=[2; 1] %[nu; rho] 
+nrshocks=1;
+lambda=1;
+nu=[2; 1]; %[nu; rho] 
 
-beta=0
+beta=0;
 
 %% transformed parameter vector
 par=log(var);
@@ -55,8 +55,8 @@ end
 y=simmht(n,x,1,var,unobstype,v,p,shocktype,lambda,nu,beta,ymax);
 cens=(y==ymax);
 
-mean_duration=mean(y)
-max_duration=max(y)
+%mean_duration=mean(y)
+%max_duration=max(y)
 
 %% inverse LT
 

@@ -23,21 +23,17 @@ help:
 	@echo " make clean --  remove all output files                         "
 	@echo ""
 
-data: strkdur.asc
-	@echo "WARNING: DATA FILE WAS MODIFIED"
-
-
 # replication figures
 figures: $(figobjects)
 
-fig1.csv: figure1.m data
+fig1.csv: figure1.m strkdur.asc
 	matlab -batch figure1
 
 fig2.csv: figure2.m
 	matlab -batch figure2
 
 fig3hist.csv fig3invlap.csv: figure3.m 
-	matlab -batch figure3 > figure3.out
+	matlab -batch figure3
 
 # replication tables
 #tables: tab1.tex
@@ -52,7 +48,7 @@ replication.pdf: $(figobjects) replication.tex
 
 # remove output
 clean:
-	rm -f $(figobjects) figure3.out $(texobjects) $(rfile).pdf
+	rm -f $(figobjects) $(texobjects) $(rfile).pdf
 
 # Lazy one-command add, commit, and push to Github
 git:
