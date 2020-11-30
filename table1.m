@@ -50,71 +50,71 @@ end
 
 %% Export tex file with Table 1
 
-f1=fopen('table1.tex','w'); 
+f1=fopen('tab1.tex','w'); 
 fprintf(f1,'%s\n','\begin{table}');
-fprintf(f1,'%s\n','\caption{Maximum Likelihood Estimates for \cites{jem85:kennan} Strike Duration Data\\label{table:strike}}');
+fprintf(f1,'%s\n','\caption{Maximum Likelihood Estimates for \cites{jem85:kennan} Strike Duration Data\label{table:strike}}');
 fprintf(f1,'%s\n','\vspace*{0.5em}');
 fprintf(f1,'%s\n','\begin{center}');
-fprintf(f1,'%s\n','\small{\\begin{tabular}{ccccccc}');
+fprintf(f1,'%s\n','\small{\begin{tabular}{ccccccc}');
 fprintf(f1,'%s\n','\toprule');
-fprintf(f1,'%s\n','& I & II & III & IV & V & VI\\tabularnewline');
+fprintf(f1,'%s\n','& I & II & III & IV & V & VI\tabularnewline');
 fprintf(f1,'%s\n','\midrule');
 fprintf(f1,'%s\n','\midrule');
-fprintf(f1,'%s\n','$\\mu$ & $1$ & $1$ & $1$ & $1$ & $1$ & $1$ \\tabularnewline');
-fprintf(f1,'%s\n','& $(0)$ & $(0)$ & $(0)$ & $(0)$ & $(0)$ & $(0)$ \\tabularnewline');
+fprintf(f1,'%s\n','$\mu$ & $1$ & $1$ & $1$ & $1$ & $1$ & $1$ \tabularnewline');
+fprintf(f1,'%s\n','& $(0)$ & $(0)$ & $(0)$ & $(0)$ & $(0)$ & $(0)$ \tabularnewline');
 fprintf(f1,'%s\n','\midrule');
 s=sprintf('$\\sigma^{2}$ & $%6.3f$ & $%6.3f$ & $%6.3f$ & $%6.3f$ & $%6.3f$ & $%6.3f$\\tabularnewline',...
     estimates(:,1));
     fprintf(f1,'%s\n',strrep(s,'NaN',''));
-s=sprintf('& $(%6.3f)$ & $(%6.3)f$ & $(%6.3f)$ & $(%6.3f)$ & $(%6.3f)$ & $(%6.3f)$\\tabularnewline',...
+s=sprintf('& $(%6.3f)$ & $(%6.3f)$ & $(%6.3f)$ & $(%6.3f)$ & $(%6.3f)$ & $(%6.3f)$\\tabularnewline',...
     stderrors(:,1));
-    fprintf(f1,'%s\n',strrep(s,'NaN',''));
+    fprintf(f1,'%s\n',strrep(s,'(   NaN)',''));
 fprintf(f1,'%s\n','\midrule');
 s=sprintf('$\\lambda$ & $%6.3f$ & $%6.3f$ & $%6.3f$ & $%6.3f$ & $%6.3f$ & $%6.3f$\\tabularnewline',...
     estimates(:,2));
     fprintf(f1,'%s\n',strrep(s,'NaN',''));
-s=sprintf('& $(%6.3f)$ & $(%6.3)f$ & $(%6.3f)$ & $(%6.3f)$ & $(%6.3f)$ & $(%6.3f)$\\tabularnewline',...
+s=sprintf('& $(%6.3f)$ & $(%6.3f)$ & $(%6.3f)$ & $(%6.3f)$ & $(%6.3f)$ & $(%6.3f)$\\tabularnewline',...
     stderrors(:,2));
-    fprintf(f1,'%s\n',strrep(s,'NaN',''));
+    fprintf(f1,'%s\n',strrep(s,'(   NaN)',''));
 fprintf(f1,'%s\n','\midrule');
 s=sprintf('$\\nu$ & $%6.3f$ & $%6.3f$ & $%6.3f$ & $%6.3f$ & $%6.3f$ & $%6.3f$\\tabularnewline',...
     estimates(:,3));
     fprintf(f1,'%s\n',strrep(s,'NaN',''));
-s=sprintf('& $(%6.3f)$ & $(%6.3)f$ & $(%6.3f)$ & $(%6.3f)$ & $(%6.3f)$ & $(%6.3f)$\\tabularnewline',...
+s=sprintf('& $(%6.3f)$ & $(%6.3f)$ & $(%6.3f)$ & $(%6.3f)$ & $(%6.3f)$ & $(%6.3f)$\\tabularnewline',...
     stderrors(:,3));
-    fprintf(f1,'%s\n',strrep(s,'NaN',''));
+    fprintf(f1,'%s\n',strrep(s,'(   NaN)',''));
 fprintf(f1,'%s\n','\midrule');
 s=sprintf('$\\beta$ & $%6.3f$ & $%6.3f$ & $%6.3f$ & $%6.3f$ & $%6.3f$ & $%6.3f$\\tabularnewline',...
     estimates(:,4));
     fprintf(f1,'%s\n',strrep(s,'NaN',''));
-s=sprintf('& $(%6.3f)$ & $(%6.3)f$ & $(%6.3f)$ & $(%6.3f)$ & $(%6.3f)$ & $(%6.3f)$\\tabularnewline',...
+s=sprintf('& $(%6.3f)$ & $(%6.3f)$ & $(%6.3f)$ & $(%6.3f)$ & $(%6.3f)$ & $(%6.3f)$\\tabularnewline',...
     stderrors(:,4));
-    fprintf(f1,'%s\n',strrep(s,'NaN',''));
+    fprintf(f1,'%s\n',strrep(s,'(   NaN)',''));
 fprintf(f1,'%s\n','\midrule');
 for l=1:5
     s=sprintf('$v_%d$ & $%6.3f$ & $%6.3f$ & $%6.3f$ & $%6.3f$ & $%6.3f$ & $%6.3f$\\tabularnewline',...
         [l;estimates(:,4+l)]);
         fprintf(f1,'%s\n',strrep(s,'NaN',''));
-    s=sprintf('& $(%6.3f)$ & $(%6.3)f$ & $(%6.3f)$ & $(%6.3f)$ & $(%6.3f)$ & $(%6.3f)$\\tabularnewline',...
+    s=sprintf('& $(%6.3f)$ & $(%6.3f)$ & $(%6.3f)$ & $(%6.3f)$ & $(%6.3f)$ & $(%6.3f)$\\tabularnewline',...
         stderrors(:,4+l));
-        fprintf(f1,'%s\n',strrep(s,'NaN',''));
-    fprintf(f1,'%s\n','\\midrule');
+        fprintf(f1,'%s\n',strrep(s,'(   NaN)',''));
+    fprintf(f1,'%s\n','\midrule');
 end
 for l=1:5
     s=sprintf('$\\pi_%d$ & $%6.3f$ & $%6.3f$ & $%6.3f$ & $%6.3f$ & $%6.3f$ & $%6.3f$\\tabularnewline',...
         [l;estimates(:,9+l)]);
         fprintf(f1,'%s\n',strrep(s,'NaN',''));
-    s=sprintf('& $(%6.3f)$ & $(%6.3)f$ & $(%6.3f)$ & $(%6.3f)$ & $(%6.3f)$ & $(%6.3f)$\\tabularnewline',...
+    s=sprintf('& $(%6.3f)$ & $(%6.3f)$ & $(%6.3f)$ & $(%6.3f)$ & $(%6.3f)$ & $(%6.3f)$\\tabularnewline',...
         stderrors(:,9+l));
-        fprintf(f1,'%s\n',strrep(s,'NaN',''));
-    fprintf(f1,'%s\n','\\midrule');
+        fprintf(f1,'%s\n',strrep(s,'(   NaN)',''));
+    fprintf(f1,'%s\n','\midrule');
 end
-fprintf(f1,'%s\n','\\midrule');
+fprintf(f1,'%s\n','\midrule');
 fprintf(f1,'$\\ell_N$ & $%6.1f$ & $%6.1f$ & $%6.1f$ & $%6.1f$ & $%6.1f$ & $%6.1f$\\tabularnewline\n',...
     loglik);
-fprintf(f1,'%s\n','\\bottomrule');
-fprintf(f1,'%s\n','\\end{tabular}}');
-fprintf(f1,'%s\n','\\end{center}');
-fprintf(f1,'%s\n','{\\footnotesize Note: The drift is normalized to $1$ per week. All specifications include a single covariate, \cites{jem85:kennan} deseasonalized and detrended log industrial production.  Asymptotic standard errors are in parentheses.}');
-fprintf(f1,'%s\n','\\end{table}');
+fprintf(f1,'%s\n','\bottomrule');
+fprintf(f1,'%s\n','\end{tabular}}');
+fprintf(f1,'%s\n','\end{center}');
+fprintf(f1,'%s\n','{\footnotesize Note: The drift is normalized to $1$ per week. All specifications include a single covariate, \cites{jem85:kennan} deseasonalized and detrended log industrial production.  Asymptotic standard errors are in parentheses.}');
+fprintf(f1,'%s\n','\end{table}');
 fclose(f1);

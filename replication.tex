@@ -10,7 +10,7 @@
 \usepackage{amsthm,amsfonts,amsopn,amsmath,amssymb}
 \usepackage{vmargin,setspace}
 \usepackage{pgf,pgfplots,tikz}
-%\usepackage{booktabs}
+\usepackage{booktabs}
 
 \RequirePackage[pagebackref=false]{hyperref}
 \RequirePackage{hypernat}
@@ -27,6 +27,7 @@
 \setpapersize{A4} \setmargrb{25mm}{18mm}{25mm}{23mm}
 \doublespace
 
+\newcommand{\cites}[1]{\citeauthor{#1}'s (\citeyear{#1})}
 
 
 
@@ -153,7 +154,8 @@ This document contains replications of all results in \citet{jem21:abbringsalima
 \end{centering}
 \end{figure}
 
-\input{table1}
+\clearpage
+\input{tab1}
 
 \begin{comment}
 \begin{figure}[t]
@@ -206,6 +208,11 @@ Abbring, J.~H. and T.~Salimans (2021a).
 Abbring, J.~H. and T.~Salimans (2021b).
 \newblock The likelihood of mixed hitting times: Replication package.
 \newblock \href{https://doi.org/10.5281/zenodo.4287734}{doi:10.5281/zenodo.4287734}.
+
+\bibitem[\protect\citeauthoryear{Kennan}{Kennan}{1985}]{jem85:kennan}
+Kennan, J. (1985).
+\newblock The duration of contract strikes in {U.S.} manufacturing.
+\newblock {\em Journal of Econometrics\/}~{\em 28}, 5--28.
 
 \end{thebibliography}
 \end{document}
