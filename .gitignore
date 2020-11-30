@@ -2,6 +2,7 @@
 *.png
 *.html
 *.csv
+tab1.tex
 *.m~
 # matlab/html/*
 # matlab/data/*

@@ -1,16 +1,17 @@
 # Makefile for The Likelihood of Mixed Hitting Times: Replication Package
 # Type 'make help' for instructions
 
-.PHONY: all help figures clean git
+.PHONY: all help figures tables clean git
 
 # variables
 rfile = replication
 texopt = -interaction=batchmode
 figobjects = fig1.csv fig2.csv fig3hist.csv fig3invlap.csv # mhtellherr.csv mhteproberr.csv mchist.csv mcinvlap.csv
+tabobjects = tab1.tex
 texobjects = $(rfile).aux $(rfile).brf $(rfile).log $(rfile).out
 
 # main rules
-all: figures $(rfile).pdf
+all: figures tables $(rfile).pdf
 
 help:
 	@echo "----------------------------------------------------------------"
@@ -36,11 +37,13 @@ fig3hist.csv fig3invlap.csv: figure3.m
 	matlab -batch figure3
 
 # replication tables
-#tables: tab1.tex
-#	$(here come the tables)
+tables: $(tabobjects)
+
+tab1.tex: table1.m strkdur.asc
+	matlab -batch table1
 
 # run pdfLaTeX to create output file
-replication.pdf: $(figobjects) replication.tex
+replication.pdf: $(figobjects) $(tabobjects) replication.tex
 	pdflatex $(texopt) $(rfile).tex
 	pdflatex $(texopt) $(rfile).tex
 	open $(rfile).pdf
@@ -48,7 +51,7 @@ replication.pdf: $(figobjects) replication.tex
 
 # remove output
 clean:
-	rm -f $(figobjects) $(texobjects) $(rfile).pdf
+	rm -f $(figobjects) $(tabobjects) $(texobjects) $(rfile).pdf
 
 # Lazy one-command add, commit, and push to Github
 git:
