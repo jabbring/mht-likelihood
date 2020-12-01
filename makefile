@@ -6,7 +6,7 @@
 # variables
 rfile = replication
 texopt = -interaction=batchmode
-figobjects = fig1.csv fig2.csv fig3hist.csv fig3invlap.csv # mhtellherr.csv mhteproberr.csv mchist.csv mcinvlap.csv
+figobjects = fig1.csv fig2.csv fig3hist.csv fig3invlap.csv fig4.csv # mhtellherr.csv mhteproberr.csv mchist.csv mcinvlap.csv mhthazard.txt
 tabobjects = tab1.tex
 texobjects = $(rfile).aux $(rfile).brf $(rfile).log $(rfile).out
 
@@ -36,10 +36,12 @@ fig2.csv: figure2.m
 fig3hist.csv fig3invlap.csv: figure3.m 
 	matlab -batch figure3
 
+fig4.csv: figure4.m fig4.mat
+
 # replication tables
 tables: $(tabobjects)
 
-tab1.tex: table1.m strkdur.asc
+tab1.tex fig4.mat: table1.m strkdur.asc
 	matlab -batch table1
 
 # run pdfLaTeX to create output file
@@ -51,7 +53,7 @@ replication.pdf: $(figobjects) $(tabobjects) replication.tex
 
 # remove output
 clean:
-	rm -f $(figobjects) $(tabobjects) $(texobjects) $(rfile).pdf
+	rm -f $(figobjects) fig4.mat $(tabobjects) $(texobjects) $(rfile).pdf
 
 # Lazy one-command add, commit, and push to Github
 git:

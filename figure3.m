@@ -2,6 +2,10 @@
 % Abbring and Salimans (2021), Figure 3 (fka laplace/PDF_comparison.m)
 % - Approximate Probability Density and Histogram of Simulated Values 
 %    of ln T for a Specification With Shocks and Heterogeneity
+%
+% dependencies: simmht.m numinvlap.m
+% output:   fig3invlap.csv  - data approximate probability density
+%           fig3hist.csv - data histogram
 % //////////////////////////////////////////////////////////////////////
 
 %% clear screen and workspace
@@ -62,8 +66,10 @@ cens=(y==ymax);
 
 % smoothing
 %figure(1)
-[fsmooth,xi] = ksdensity(log(y),'kernel','epanechnikov','width',5*sqrt(mean(log(y).^2)-mean(log(y))^2)/sqrt(n),'npoints',nbins);
-probs=numinvlap(eval(['@' unobstype shocktype]),par,exp(xi'),false,ones(length(xi),1),nrunobs,nrshocks);
+[fsmooth,xi] = ksdensity(log(y),'kernel','epanechnikov','width',...
+        5*sqrt(mean(log(y).^2)-mean(log(y))^2)/sqrt(n),'npoints',nbins);
+probs=numinvlap(eval(['@' unobstype shocktype]),par,exp(xi'),false,...
+                                    ones(length(xi),1),nrunobs,nrshocks);
 %plot(xi,fsmooth,xi,probs)
 
 % histogram
@@ -73,18 +79,19 @@ intervalsize = (xi(end)-xi(1))/(nbins-1);
 xibounds = xi-intervalsize/2:intervalsize:xi(end)+intervalsize/2;
 nr=histc(log(y),xibounds); 
 fhist=nr(1:end-1)'/length(y)/intervalsize;
-%bar((xibounds(2:end)+xibounds(1:end-1))/2,fhist,'FaceColor',[0 0 1],'EdgeColor',[1 1 1],'BarWidth',0.5);
+%bar((xibounds(2:end)+xibounds(1:end-1))/2,fhist,'FaceColor',[0 0 1],...
+%                                   'EdgeColor',[1 1 1],'BarWidth',0.5);
 %hold on
 %plot(xi,probs,'LineWidth',2,'Color','green');
 
 %% Export data to csv files for TikZ
 
-f1=fopen('fig3hist.csv','w'); % mchist.csv
-fprintf(f1,'logtlow, hist, dummy\n');
-fprintf(f1,'%6.6f, %6.6f, 1.0\n',[xibounds' [fhist';NaN]]');
-fclose(f1);
-
 f1=fopen('fig3invlap.csv','w'); % mcinvlap.csv
 fprintf(f1,'logt, smooth, invlt, dummy\n');
 fprintf(f1,'%6.6f, %6.6f, %6.6f, 1.0\n',[xi' fsmooth' probs]');
+fclose(f1);
+
+f1=fopen('fig3hist.csv','w'); % mchist.csv
+fprintf(f1,'logtlow, hist, dummy\n');
+fprintf(f1,'%6.6f, %6.6f, 1.0\n',[xibounds' [fhist';NaN]]');
 fclose(f1);

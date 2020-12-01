@@ -16,11 +16,6 @@ nrshocks=0;
 est=0;
 
 %% read strike data
-%if isunix
-%    rawdata=load('../strikes/strkdur.asc');
-%else
-%    rawdata=load('..\strikes\strkdur.asc');
-%end
 rawdata=load('strkdur.asc');
 
 x=rawdata(:,2);

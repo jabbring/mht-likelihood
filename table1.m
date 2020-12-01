@@ -2,6 +2,11 @@
 % Abbring and Salimans (2021), Table 1 (fka laplace/test.m)
 % - Maximum Likelihood Estimates for Kennan’s (1985) Strike Duration 
 %   Data
+%
+% dependencies: strkdur.asc mhtmle 
+% output:   tab1.tex - LaTeX version of Table 1
+%           fig4.mat - contains structure `est` with estimates column IV
+%                       for figure4.m
 % //////////////////////////////////////////////////////////////////////
 
 %% clear screen and workspace
@@ -18,16 +23,22 @@ y=rawdata(:,1)/7;
 estimates=nan(6,14);
 stderrors=estimates;
 loglik=nan(6,1);
+comptime = [];
 rng(230670); % seed for random start values
 % Columns I-VI
 for i = 1:6
     fprintf('Calculating Table 1 Column %1d\n',i)
     L = min(i,5); % nrunobs
     Q = max(i-5,0); % nrshocks
+    tic;
     [est,ses,llh,opt]=mhtmle(y,false,x,'point','point',L,Q);
+    comptime=[comptime;toc];
     % last 4 arguments are: unobs_type, shock_type, nrunobs (L), nrshocks 
     % (Q); unobs_type and shock_type can be either 'gamma' or 'point'
     disp(opt)
+    if i==4
+        save('fig4','est') % save estimates IV for Figure 4
+    end
     loglik(i)=llh;
     estimates(i,1)=est.bm_var; % sigma^2
     if Q>0
@@ -47,6 +58,8 @@ for i = 1:6
     stderrors(i,5:4+L)=ses.unobs_v(srtidx);
     stderrors(i,10:9+L)=ses.unobs_p(srtidx);
 end
+fprintf('Computation times: I %4.1fs II %4.1fs III %4.1fs IV %4.1fs V %4.1fs VI %4.1fs\n',...
+    comptime);
 
 %% Export tex file with Table 1
 
