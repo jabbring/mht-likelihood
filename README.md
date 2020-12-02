@@ -75,4 +75,6 @@ Users can extend the set of specifications by adding different functions `<heter
 - Cameron, A. Colin, and Pravin K. Trivedi (2005), *[Microeconometrics: Methods and Applications](http://cameron.econ.ucdavis.edu/mmabook/mma.html)*, Cambridge: Cambridge University Press.
 - Kennan, John (1985), "[The duration of contract strikes in U.S. manufacturing](https://www.ssc.wisc.edu/~jkennan/research/JEM85.pdf)", *Journal of Econometrics*, 28, 5–28.
 
+We welcome the use of this software under an MIT license.
+
 &copy; 2020 Jaap H. Abbring and Tim Salimans
