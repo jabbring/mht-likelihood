@@ -9,9 +9,11 @@ Use `make` to replicate [Abbring and Salimans (2021)](https://arxiv.org/abs/1905
 - `figure1.m` -  replicates Figure 1
 - `figure2.m` -  replicates Figure 2
 - `figure3.m` -  replicates Figure 3
-- `table1.m` - replicates Table 1 and Figure 4
-- `table1BM.m` - recalculates Columns I-V of table one using the exact likelihood for the Gaussian case
-- `table1lowM` - recalculates Table 1 with a lower value of the design parameter `M`
+- `table1.m` - replicates Table 1
+- `figure4.m` - replicates Figure 4
+- `checkgradient.m` - checks the analytic gradients against numerical ones
+<!-- - `table1BM.m` - recalculates Columns I-V of table one using the exact likelihood for the Gaussian case
+- `table1lowM` - recalculates Table 1 with a lower value of the design parameter `M`-->
 
 and displays the resulting figures and tables in a pdf file `replication.pdf`.
 
@@ -40,21 +42,24 @@ Users can extend the set of specifications by adding different functions `<heter
 
 ### 2. Probability densities and cumulate distributions
 
-- `numinvlap.m` - mixed hitting time pdf (calculated by Laplace transform inversion)
+- `numinvlap.m` - MHT pdf (calculated by Laplace transform inversion)
 - `numinvlap2.m` - idem, but with input of design parameter `M`
 - `igausscdf.m` - inverse Gaussian cdf
 - `igausspdf.m` - inverse Gaussian pdf
+- `weibullcdf.m` - Weibull MPH cdf
+- `weibullpdf.m` - Weibull MPH pdf
 
 ### 3. Likelihood calculation
 
-- `mhtobj.m` - minus the log likelihood (calculated by Laplace transform inversion)
-- `lhmigauss.m` - likelihood (calculated using explicit expressions for the Gaussian case)
-- `nllhmigauss.m` - minus the log likelihood (calculated using explicit expressions for the Gaussian case)
+- `mhtobj.m` - minus the log likelihood of the MHT model (calculated by Laplace transform inversion)
+- `lhmigauss.m` - likelihood of the MHT model (calculated using explicit expressions for the Gaussian case)
+- `nllhmigauss.m` - minus the log likelihood of the MHT model (calculated using explicit expressions for the Gaussian case)
+- `nllhmph.m` - minus the log likelihood of the Weibull MPH model
 
 ### 4. Maximum likelihood estimation
 
-- `mhtmle.m` - general case (based on Laplace inversion)
-- `migaussmle.m` - Gaussian special case
+- `mhtmle.m` - ML estimation of the general MHT model (based on Laplace inversion)
+- `migaussmle.m` - ML estimation of the Gaussian special case
 
 ### 5. Simulation
 
