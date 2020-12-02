@@ -54,7 +54,7 @@ Users can extend the set of specifications by adding different functions `<heter
 - `mhtobj.m` - minus the log likelihood of the MHT model (calculated by Laplace transform inversion)
 - `lhmigauss.m` - likelihood of the MHT model (calculated using explicit expressions for the Gaussian case)
 - `nllhmigauss.m` - minus the log likelihood of the MHT model (calculated using explicit expressions for the Gaussian case)
-- `nllhweibull.m` - minus the log likelihood of the Weibull MPH model
+- `nllhmph.m` - minus the log likelihood of the Weibull MPH model
 
 ### 4. Maximum likelihood estimation
 
