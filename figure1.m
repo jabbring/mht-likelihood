@@ -1,6 +1,9 @@
 % //////////////////////////////////////////////////////////////////////
 % Abbring and Salimans (2021), Figure 1 (fka laplace/invtest.m)
 % - Approximation Error of the Log Likelihood for Various M
+%
+% Dependencies: strkdur.asc migaussmle.m lhmigauss.m numinvlap.m
+% Output: - fig1.csv
 % //////////////////////////////////////////////////////////////////////
 
 %% clear screen and workspace
@@ -11,7 +14,7 @@ format long
 %% settings
 dispplot = false; % set to true to have script plot results
 
-nrunobs=1;
+nrunobs=4;
 nrshocks=0;
 est=0;
 
@@ -89,9 +92,13 @@ end
 if dispplot
     llhplot(exp(lerr))
 end
-fprintf('Mean time (analytical): %0.5e seconds\n',mean(timea));
-fprintf('Mean time (numerical inversion): %0.5e seconds\n',mean(timen));
-fprintf('Mean time numerical =  %6.2f x mean time analytical\n',mean(timen)/mean(timea));
+f1=fopen('fig1times.tex','w'); 
+fprintf(f1,'Note: Mean calculation times are $%0.5e$ seconds (analytical) and ',...
+    mean(timea));
+fprintf(f1,'$%0.5e$ seconds (numerical inversion), so that ',mean(timen));
+fprintf(f1,'mean time numerical $=%6.2f\\times$ mean time analytical\n',...
+    mean(timen)/mean(timea));
+fclose(f1);
 
 %% Export data to csv file for TikZ
 

@@ -4,9 +4,11 @@
 %   writes data for Figure 4. Aggregate Strike End Hazard Rates
 %
 %
-% dependencies: fig4.mat igausscdf.m igausapdf.m weibullcdf.m 
+% dependencies: tab1.mat igausscdf.m igausspdf.m weibullcdf.m 
 %               weibullpdf.m
-% output:   fig4.csv  - data aggregate strike end hazard rates
+% output:   fig4.csv - data aggregate strike end hazard rates
+%           fig4.tex - LaTeX macros MPH results cited in text
+%           weibullmph.mat - MPH results for gradient check (numgrad.m) 
 % //////////////////////////////////////////////////////////////////////
 
 %% clear screen and workspace
@@ -32,12 +34,12 @@ emphaz=7*ksdensity(t',t','Weights',rawhaz,'Kernel','epanechnikov',...
 
 %% hazard rate MHT model Table 1 IV
 
-load('fig4.mat'); % this loads the structure 'est' with MHT estimates
+mht=load('tab1.mat'); % this loads the structure 'est' with MHT estimates
 mu=1;
-var=est.bm_var;
-p=est.unobs_p;
-v=est.unobs_v;
-exb=exp(x*est.beta);
+var=mht.est.bm_var;
+p=mht.est.unobs_p;
+v=mht.est.unobs_v;
+exb=exp(x*mht.est.beta);
 
 igpdf=0;
 igcdf=0;
@@ -47,7 +49,7 @@ for i=1:nrobs
 end
 ighaz=igpdf./(1-igcdf);
 
-%% estimate Weibull MPH model
+%% hazard rate Weibull MPH model
 disp('Estimating Weibull MPH model');
 rng(230676)
 options=optimset('GradObj','on','LargeScale','off','HessUpdate','bfgs','Display','off','MaxIter',1000);
@@ -62,7 +64,8 @@ while (length(llh)<3 || sum(llh>max(llh)-(1e-3)*nrobs)<3) && iter<10
     disp(['Maximizing log likelihood, random initialization ' int2str(iter)]);
     
     startvalues = randn(1,9);
-    [estpar,nllh,eflag,output,grad,hessian]=fminunc(@(par)nllhmph(par,y,0,x,4),startvalues,options);
+    [estpar,nllh,eflag,output,grad,hessian]=fminunc(@(par)nllhmph(par,y,...
+        false,x,4),startvalues,options);
     llh=[llh nllh];
 end
 
@@ -80,6 +83,7 @@ for i=1:nrobs
 end
 weibullhaz=wpdf./(1-wcdf);
 
+save('weibullmph','estpar'); % for checking numerical gradient
 
 figure(1)
 plot(t,[emphaz weibullhaz ighaz]);
@@ -90,3 +94,11 @@ f1=fopen('fig4.csv','w');   % mhtehazard.txt
 fprintf(f1,'t, mht, mph, data, dummy\n');
 fprintf(f1,'%6.6f, %6.6f, %6.6f, %6.6f, 1.0\n',[t' ighaz weibullhaz emphaz]');
 fclose(f1);
+
+%% Export MPH likelihood comparison to tex file
+
+f1=fopen('fig4.tex','w');   
+fprintf(f1,'\\def\\mphllh{$%6.1f$}\n',-nllh);
+fprintf(f1,'\\def\\diffllh{$%6.1f$}\n',mht.llh+nllh);
+fclose(f1);
+

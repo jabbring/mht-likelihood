@@ -1,6 +1,8 @@
 % //////////////////////////////////////////////////////////////////////
 % Abbring and Salimans (2021), extra calculations (fka laplace/test3.m)
-% - Check analytical gradient against numerical one (requires numgrad.m)
+% - Check analytical gradients against numerical ones
+%
+% Dependencies: numgrad.m strkdur.asc weibullmph.mat
 % //////////////////////////////////////////////////////////////////////
 
 %% clear screen and workspace
@@ -8,15 +10,12 @@ clear
 clc
 format short
 
-%% read strike data
-%if ispc;
-%        rawdata=load('..\..\strikes\strkdur.asc');
-%else
-%        rawdata=load('../../strikes/strkdur.asc');
-%end    
+rng(230670);
+
+%% read strike data 
 rawdata=load('strkdur.asc');
 x=rawdata(:,2);
-y=rawdata(:,1);
+y=rawdata(:,1)/7;
 
 %% test
 cens=false;
@@ -93,9 +92,38 @@ else
 end
 
 % convert to parameter vector of startvalues
-startvalues=[var; p; v; lambda; nu; beta]
+startvalues=[var; p; v; lambda; nu; beta];
 
-[obj, pargrad] = mhtobj(eval(['@' unobs_form shock_form]),startvalues,y,cens,x,nrunobs,nrshocks);
-numgradient = numgrad(@(par)mhtobj(eval(['@' unobs_form shock_form]),par,y,cens,x,nrunobs,nrshocks),startvalues);
+[obj, pargrad] = mhtobj(eval(['@' unobs_form shock_form]),startvalues,y,...
+    cens,x,nrunobs,nrshocks);
+numgradient = numgrad(@(par)mhtobj(eval(['@' unobs_form shock_form]),...
+    par,y,cens,x,nrunobs,nrshocks),startvalues);
 
-disp([pargrad numgradient]);
+f1=fopen('chckgrad.tex','w');   
+fprintf(f1,'\\begin{table}[ht]\n');
+fprintf(f1,'\\caption{Analytical and Numerical Gradients MHT}\n');
+fprintf(f1,'\\begin{center}\n');
+fprintf(f1,'\\begin{tabular}{rr}\n');
+fprintf(f1,'$%6.6f$&$%6.6f$\\\\\n',[pargrad numgradient]');
+fprintf(f1,'\\end{tabular}\n');
+fprintf(f1,'\\end{center}\n');
+fprintf(f1,'\\end{table}\n');
+
+mph=load('weibullmph');
+
+[obj,pargrad1] = nllhmph(mph.estpar,y,false,x,4);
+numgradient1 = numgrad(@(par)nllhmph(par',y,false,x,4),mph.estpar');
+
+altpar=mph.estpar.*(1+randn(size(mph.estpar))/10);
+[obj,pargrad2] = nllhmph(altpar,y,false,x,4);
+numgradient2 = numgrad(@(par)nllhmph(par',y,false,x,4),altpar');
+
+fprintf(f1,'\\begin{table}[ht]\n');
+fprintf(f1,'\\caption{Analytical and Numerical Gradients MPH}\n');
+fprintf(f1,'\\begin{center}\n');
+fprintf(f1,'\\begin{tabular}{rr|rr}\n');
+fprintf(f1,'$%6.6f$&$%6.6f$&$%6.6f$&$%6.6f$\\\\\n',[pargrad1' numgradient1 pargrad2' numgradient2]');
+fprintf(f1,'\\end{tabular}\n');
+fprintf(f1,'\\end{center}\n');
+fprintf(f1,'\\end{table}\n');
+fclose(f1);

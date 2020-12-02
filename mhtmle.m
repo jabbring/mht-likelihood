@@ -161,7 +161,7 @@ elseif iter==10
     disp('Solution might be a local optimum!')
     disp('Try using a simpler specification.')
 else
-    disp('Optimization was succesful!')
+    disp('Optimization was successful!')
 end
 if ~pd
     disp('Hessian at optimum was not positive definite, so standard errors are inaccurate.')

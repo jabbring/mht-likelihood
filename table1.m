@@ -3,10 +3,11 @@
 % - Maximum Likelihood Estimates for Kennan’s (1985) Strike Duration 
 %   Data
 %
-% dependencies: strkdur.asc mhtmle 
+% dependencies: strkdur.asc mhtmle.m
 % output:   tab1.tex - LaTeX version of Table 1
-%           fig4.mat - contains structure `est` with estimates column IV
-%                       for figure4.m
+%           tab1times.tex - LaTeX code with comp times Table 1
+%           tab1.mat - contains structure `est` with estimates and 
+%                       corresponding llh column IV for figure4.m
 % //////////////////////////////////////////////////////////////////////
 
 %% clear screen and workspace
@@ -35,9 +36,9 @@ for i = 1:6
     comptime=[comptime;toc];
     % last 4 arguments are: unobs_type, shock_type, nrunobs (L), nrshocks 
     % (Q); unobs_type and shock_type can be either 'gamma' or 'point'
-    disp(opt)
+    % disp(opt)
     if i==4
-        save('fig4','est') % save estimates IV for Figure 4
+        save('tab1','est','llh') % save estimates IV for Figure 4
     end
     loglik(i)=llh;
     estimates(i,1)=est.bm_var; % sigma^2
@@ -58,12 +59,23 @@ for i = 1:6
     stderrors(i,5:4+L)=ses.unobs_v(srtidx);
     stderrors(i,10:9+L)=ses.unobs_p(srtidx);
 end
-fprintf('Computation times: I %4.1fs II %4.1fs III %4.1fs IV %4.1fs V %4.1fs VI %4.1fs\n',...
-    comptime);
 
-%% Export tex file with Table 1
+%% Export tex file with computation times
+f1=fopen('tab1times.tex','w'); 
+fprintf(f1,'Computation times (in seconds):');
+fprintf(f1,'\\begin{tabular}{cccccc}');
+fprintf(f1,'I&II&III&IV&V&VI\\\\');
+fprintf(f1,'$%4.1f$&$%4.1f$&$%4.1f$&$%4.1f$&$%4.1f$&$%4.1f$',comptime);
+fprintf(f1,'\\end{tabular}\n');
+fclose(f1);
 
+%% Export tex file with Table 1 (incl macros estimates cited in main text)
 f1=fopen('tab1.tex','w'); 
+fprintf(f1,'\\def\\vone{$%6.1f$}\n',estimates(4,4+1));
+fprintf(f1,'\\def\\vtwo{$%6.1f$}\n',estimates(4,4+2));
+fprintf(f1,'\\def\\vthree{$%6.1f$}\n',estimates(4,4+3));
+fprintf(f1,'\\def\\vfour{$%6.1f$}\n',estimates(4,4+4));
+
 fprintf(f1,'%s\n','\begin{table}');
 fprintf(f1,'%s\n','\caption{Maximum Likelihood Estimates for \cites{jem85:kennan} Strike Duration Data\label{table:strike}}');
 fprintf(f1,'%s\n','\vspace*{0.5em}');
