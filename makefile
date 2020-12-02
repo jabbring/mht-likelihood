@@ -6,7 +6,7 @@
 # variables
 rfile = replication
 texopt = -interaction=batchmode
-figobjects = fig1.csv fig1times.tex fig2.csv fig3hist.csv fig3invlap.csv fig4.csv fig4.tex 
+figobjects = fig1.csv fig1times.tex fig2.csv fig3hist.csv fig3invlap.csv fig4.csv fig4.tex weibullmph.mat 
 # mhtellherr.csv mhteproberr.csv mchist.csv mcinvlap.csv mhthazard.txt
 tabobjects = tab1.tex tab1times.tex tab1.mat
 othobjects = chckgrad.tex
