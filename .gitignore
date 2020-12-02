@@ -6,6 +6,7 @@ tab1.tex
 *.m~
 *.mat
 *.asv
+*.tex
 # matlab/html/*
 # matlab/data/*
 
