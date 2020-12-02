@@ -4,6 +4,8 @@
 *.csv
 tab1.tex
 *.m~
+*.mat
+*.asv
 # matlab/html/*
 # matlab/data/*
 
