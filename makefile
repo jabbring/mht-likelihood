@@ -13,7 +13,8 @@ othobjects = chckgrad.tex
 texobjects = $(rfile).aux $(rfile).brf $(rfile).log $(rfile).out $(rfile).synctex.gz
 
 # main rules
-all: figures tables other $(rfile).pdf
+all: paper other $(rfile).pdf
+paper: figures tables
 
 help:
 	@echo "----------------------------------------------------------------"
@@ -23,6 +24,7 @@ help:
 	@echo ""
 	@echo " make all   --  replicate all tables & figures and display them "
 	@echo "                  in replication.pdf (default)                  "
+	@echo " make paper --  only generate results for paper
 	@echo " make clean --  remove all output files                         "
 	@echo ""
 
