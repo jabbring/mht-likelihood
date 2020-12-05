@@ -111,10 +111,10 @@ fprintf(f1,'\\end{table}\n');
 
 mph=load('weibullmph');
 
-[obj,pargrad1] = nllhmph(mph.estpar,y,false,x,4);
-numgradient1 = numgrad(@(par)nllhmph(par',y,false,x,4),mph.estpar');
+[obj,pargrad1] = nllhmph(mph.par,y,false,x,4);
+numgradient1 = numgrad(@(par)nllhmph(par',y,false,x,4),mph.par');
 
-altpar=mph.estpar.*(1+randn(size(mph.estpar))/10);
+altpar=mph.par.*(1+randn(size(mph.par))/10);
 [obj,pargrad2] = nllhmph(altpar,y,false,x,4);
 numgradient2 = numgrad(@(par)nllhmph(par',y,false,x,4),altpar');
 

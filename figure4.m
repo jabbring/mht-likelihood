@@ -16,14 +16,17 @@ clear
 clc
 format short
 
-%% read strike data and preferred MHT estimates   
+%% settings
+dispplot = false; % set to true to have script plot results
+
+%% read strike data  
 rawdata=load('strkdur.asc');
 x=rawdata(:,2);
 y=rawdata(:,1)/7;
 
 nrobs=size(y,1);
 
-%% empirical hazard rate
+%% calculate kernel smoothed empirical hazard rate
 t=1/7:1/7:max(y);
 rawcts=sum(abs(t-y)<1e-3)';
 rawsrv=nrobs-[0;cumsum(rawcts(1:end-1))];
@@ -32,8 +35,7 @@ rawhaz=7*rawcts./rawsrv;
 emphaz=7*ksdensity(t',t','Weights',rawhaz,'Kernel','epanechnikov',...
     'Bandwidth',1,'Support',[0,max(y)+1],'BoundaryCorrection','reflection');
 
-%% hazard rate MHT model Table 1 IV
-
+%% calculate hazard rate estimated MHT model Table 1 IV
 mht=load('tab1.mat'); % this loads the structure 'est' with MHT estimates
 mu=1;
 var=mht.est.bm_var;
@@ -49,16 +51,19 @@ for i=1:nrobs
 end
 ighaz=igpdf./(1-igcdf);
 
-%% hazard rate Weibull MPH model
+%% estimate hazard rate Weibull MPH model
 disp('Estimating Weibull MPH model');
 rng(230676)
 options=optimset('GradObj','on','LargeScale','off','HessUpdate','bfgs','Display','off','MaxIter',1000);
 
+% initialize
 llh=[];
 iter=0;
+maxllh=-Inf;
+pd=false;
 % maximize likelihood with random starting points to find global optimum
-while (length(llh)<3 || sum(llh>max(llh)-(1e-3)*nrobs)<3) && iter<10
- 
+while (length(llh)<3 || sum(llh>max(llh)-(1e-3)*nrobs)<3 || ~pd) && iter<10
+
     % new iteration
     iter=iter+1;
     disp(['Maximizing log likelihood, random initialization ' int2str(iter)]);
@@ -66,14 +71,43 @@ while (length(llh)<3 || sum(llh>max(llh)-(1e-3)*nrobs)<3) && iter<10
     startvalues = randn(1,9);
     [estpar,nllh,eflag,output,grad,hessian]=fminunc(@(par)nllhmph(par,y,...
         false,x,4),startvalues,options);
-    llh=[llh nllh];
+
+    % check and save results
+    if eflag>0
+        llh=[llh -nllh];
+        if -nllh>maxllh
+            maxllh=-nllh;
+            par=estpar;
+
+            % check positive definiteness of hessian
+            try
+                pd=all(diag(chol(hessian))>0);
+            catch
+                pd=false;
+            end
+        end
+    end
 end
 
-delta=exp(estpar(1));
-v=exp(estpar(2:5));
-p=exp([estpar(6:8) 0]);
+% examine results
+if ~isfinite(maxllh)
+    error('All optimization attempts failed, check the model specification.')
+elseif iter==10
+    disp('Solution might be a local optimum!')
+    disp('You may want increase the number of random starting values tried.')
+else
+    disp('Optimization was successful!')
+end
+if ~pd
+    disp('Warning: Hessian at optimum was not positive definite')
+end
+    
+% retrieve parameters
+delta=exp(par(1));
+v=exp(par(2:5));
+p=exp([par(6:8) 0]);
 p=p/sum(p);
-beta=estpar(9);
+beta=par(9);
 exb=exp(x*beta);
 wpdf=0;
 wcdf=0;
@@ -83,22 +117,23 @@ for i=1:nrobs
 end
 weibullhaz=wpdf./(1-wcdf);
 
-save('weibullmph','estpar'); % for checking numerical gradient
+save('weibullmph','par'); % for checking numerical gradient
 
-figure(1)
-plot(t,[emphaz weibullhaz ighaz]);
+%% plot all three hazard rates if dissplot=true
+if dispplot
+    figure(1)
+    plot(t,[emphaz weibullhaz ighaz]);
+end
 
 %% Export data to csv file for TikZ
-
 f1=fopen('fig4.csv','w');   % mhtehazard.txt
 fprintf(f1,'t, mht, mph, data, dummy\n');
 fprintf(f1,'%6.6f, %6.6f, %6.6f, %6.6f, 1.0\n',[t' ighaz weibullhaz emphaz]');
 fclose(f1);
 
 %% Export MPH likelihood comparison to tex file
-
 f1=fopen('fig4.tex','w');   
-fprintf(f1,'\\def\\mphllh{$%6.1f$}\n',-nllh);
-fprintf(f1,'\\def\\diffllh{$%6.1f$}\n',mht.llh+nllh);
+fprintf(f1,'\\def\\mphllh{$%6.1f$}\n',maxllh);
+fprintf(f1,'\\def\\diffllh{$%6.1f$}\n',mht.llh-maxllh);
 fclose(f1);
 
