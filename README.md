@@ -1,10 +1,10 @@
 # The Likelihood of Mixed Hitting Times: Replication Package
 
-This repository contains MATLAB code for replicating the numerical results in [Abbring and Salimans (2021)](https://arxiv.org/abs/1905.03463). This covers the computation of the likelihood of the [mixed hitting-time model](http://jaap.abbring.org/images/pdf/ecta7312.pdf), maximum likelihood estimation of parametric versions of this model, and an application to the analysis of [Kennan's (1985) strike data](https://www.ssc.wisc.edu/~jkennan/research/JEM85.pdf).
+This repository contains MATLAB code for replicating the numerical results in [Abbring and Salimans (2021)](https://arxiv.org/abs/1905.03463). This covers the computation of the likelihood of the [mixed hitting-time model](http://jaap.abbring.org/images/pdf/ecta7312.pdf), maximum likelihood estimation of parametric versions of this model, and an application to the analysis of [Kennan's (1985) strike data](https://www.ssc.wisc.edu/~jkennan/research/JEM85.pdf)
 
 ## Contents
 
-Use `make` to replicate [Abbring and Salimans (2021)](https://arxiv.org/abs/1905.03463). This runs the following MATLAB scripts
+The results in [Abbring and Salimans (2021)](https://arxiv.org/abs/1905.03463) were obtained by running `make` on a Macbook Pro (2018, 15inch) 2.9GHz 6-Core Intel Core i9 with macOS 10.15.7, MATLAB 2020b (with its Optimization Toolbox), and pdfTeX 3.14159265-2.6-1.40.19. This runs the following MATLAB scripts
 
 - `figure1.m` -  replicates Figure 1
 - `figure2.m` -  replicates Figure 2
@@ -12,8 +12,8 @@ Use `make` to replicate [Abbring and Salimans (2021)](https://arxiv.org/abs/1905
 - `table1.m` - replicates Table 1
 - `figure4.m` - replicates Figure 4
 - `checkgradient.m` - checks the analytic gradients against numerical ones
-<!-- - `table1BM.m` - recalculates Columns I-V of table one using the exact likelihood for the Gaussian case
-- `table1lowM` - recalculates Table 1 with a lower value of the design parameter `M`-->
+<!-- - `table1BM.m` - recalculates Columns I-V of table one using the exact likelihood for the Gaussian case-->
+- `table1lowM` - recalculates Table 1 with a lower value of the design parameter `M`
 
 and displays the resulting figures and tables in a pdf file `replication.pdf`.
 
