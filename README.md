@@ -8,10 +8,10 @@ The results were obtained using [v1.0.0](https://github.com/jabbring/mht-likelih
 - `figure2.m` -  replicates Figure 2
 - `figure3.m` -  replicates Figure 3
 - `table1.m` - replicates Table 1
+- `table1lowM` - recalculates Table 1 with *M=15*
 - `figure4.m` - replicates Figure 4
 - `checkgradient.m` - checks the analytic gradients against numerical ones
 <!-- - `table1BM.m` - recalculates Columns I-V of table one using the exact likelihood for the Gaussian case-->
-- `table1lowM` - recalculates Table 1 with a lower value of the design parameter `M`
 
 and displays the resulting figures and tables in a `pdf` file `replication.pdf` (note that TeX Live is only used in the last step, which requires pdfTeX to process the `tex` files written by the MATLAB scripts).
 
