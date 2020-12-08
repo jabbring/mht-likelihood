@@ -13,7 +13,7 @@ The results were obtained using [v1.0.0](https://github.com/jabbring/mht-likelih
 <!-- - `table1BM.m` - recalculates Columns I-V of table one using the exact likelihood for the Gaussian case-->
 - `table1lowM` - recalculates Table 1 with a lower value of the design parameter `M`
 
-and displays the resulting figures and tables in a pdf file `replication.pdf`.
+and displays the resulting figures and tables in a pdf file `replication.pdf` (note that TeX Live is only used in the last step, which runs `pdflatex` on the `tex` files written by the MATLAB scripts).
 
 ![output example](replicationexample.png)
 
