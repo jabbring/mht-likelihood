@@ -2,7 +2,7 @@
 
 This repository contains MATLAB code for replicating the numerical results in [Abbring and Salimans (2021)](https://arxiv.org/abs/1905.03463). This covers the computation of the likelihood of the [mixed hitting-time model](http://jaap.abbring.org/images/pdf/ecta7312.pdf), maximum likelihood estimation of parametric versions of this model, and an application to the analysis of [Kennan's (1985) strike data](https://www.ssc.wisc.edu/~jkennan/research/JEM85.pdf). 
 
-The results were obtained using v1.1.0 of this package, by running `make` on a Macbook Pro (2018, 15inch) 2.9GHz 6-Core Intel Core i9 with macOS 10.15.7, MATLAB 2020b (with its Optimization Toolbox), and pdfTeX 3.14159265-2.6-1.40.19. This runs the following MATLAB scripts
+The results were obtained using [v1.0.0](https://github.com/jabbring/mht-likelihood/releases/tag/v1.0.0) of this package on a Macbook Pro (2018, 15inch) 2.9GHz 6-Core Intel Core i9 with macOS 10.15.7, MATLAB 2020b (with its Optimization Toolbox), and pdfTeX 3.14159265-2.6-1.40.19. Running `make` executes the following MATLAB scripts:
 
 - `figure1.m` -  replicates Figure 1
 - `figure2.m` -  replicates Figure 2
