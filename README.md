@@ -17,11 +17,13 @@ and displays the resulting figures and tables in a `pdf` file `replication.pdf` 
 
 ![output example](replicationexample.png)
 
-As an extra check, the scripts for computing Figures 1-4 can be adapted, by changing `dispplot=false` into `dispplot=true`, to plot these figures directly. The repository also contains a script
+As an extra check, the scripts for computing Figures 1-4 can be adapted, by changing `dispplot=false` into `dispplot=true`, to plot these figures directly. 
+
+The repository also contains a script
 
 - `simtest.m` - simulates data and estimates the model on these data
 
-Users can adapt these scripts to apply the procedures they call in other contexts. The scripts require a range of functions and a data set.
+Users can adapt these scripts to apply the procedures they call in other contexts. In particular, `table1.m` shows how to use the package to estimate the MHT model with jumps. The scripts require a range of functions and a data set.
 
 ### 1. Model specification
 
