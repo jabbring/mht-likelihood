@@ -12,7 +12,7 @@ clc
 format long
 
 %% settings
-dispplot = false; % set to true to have script plot results
+dispplot = true; % set to true to have script plot results
 
 %% calculate approximations
 y=(0.1:0.1:44)';
@@ -27,10 +27,11 @@ if dispplot
     ylim(axes2,[1e-12 1.5e1]);
     box(axes2,'on');
     hold(axes2,'all');
-    scatter(lap,err,'MarkerFaceColor',[0 0 0],'MarkerEdgeColor',[0 0 0],...
+    scatter(lap,err,'MarkerFaceColor','blue','MarkerEdgeColor','blue',...
         'Marker','.');
-    xlabel('log probability density','LineWidth',2,'FontSize',14);
-    ylabel('absolute error','LineWidth',2,'FontSize',14);
+    title('Figure 2. Approximation Error of the Log Inverse Gaussian PDF');
+    xlabel('Log probability density','LineWidth',2,'FontSize',14);
+    ylabel('Absolute error in log probability density','LineWidth',2,'FontSize',14);
 end
 
 %% Export data to csv file for TikZ

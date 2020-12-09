@@ -125,9 +125,12 @@ if dispplot
     axes4 = axes('Parent',fig4,'LineWidth',1,'FontSize',14);
     box(axes4,'on');
     hold(axes4,'all');
-    plot(t,emphaz,t,weibullhaz,t,ighaz,'LineWidth',2);
-    xlabel({'t'},'LineWidth',2,'FontSize',14);
-    ylabel({'hazard'},'LineWidth',2,'FontSize',14);
+    plot(t,emphaz,'LineWidth',2,'Color','green');
+    plot(t,weibullhaz,'LineWidth',2,'Color','blue');
+    plot(t,ighaz,'LineWidth',2,'Color','red');
+    title('Figure 4. Aggregate Strike End Hazard Rates');
+    xlabel({'Strike duration in weeks'},'LineWidth',2,'FontSize',14);
+    ylabel({'Hazard rate per week'},'LineWidth',2,'FontSize',14);
 end
 
 %% Export data to csv file for TikZ

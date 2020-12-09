@@ -16,7 +16,7 @@ format short
 %% settings
 dispplot = true; % set to true to have script plot results
 
-n=1e5; % sample size
+n=1e3; % sample size
 neval = 250;
 nbins = 100;
 k=1; % number of regressors
@@ -82,12 +82,13 @@ if dispplot
     axes3 = axes('Parent',fig3,'LineWidth',1,'FontSize',14);
     box(axes3,'on');
     hold(axes3,'all');
-    bar((xibounds(2:end)+xibounds(1:end-1))/2,fhist,'FaceColor',[0 0 1],...
-                                   'EdgeColor',[1 1 1],'BarWidth',0.5);
-    plot(xi,probs,'LineWidth',2,'Color','green');
+    bar((xibounds(2:end)+xibounds(1:end-1))/2,fhist,'FaceColor',[1 1 1],...
+                                   'EdgeColor',[0 1 0],'BarWidth',0.5);
+    plot(xi,probs,'LineWidth',2,'Color','blue');
     plot(xi,fsmooth,'LineWidth',2,'Color','red','LineStyle','--')
-    xlabel({'log(T)'},'LineWidth',2,'FontSize',14);
-    ylabel({'pdf'},'LineWidth',2,...
+    title('Figure 3. Approximate PDF and Histogram of Simulated Values of ln T');
+    xlabel({'ln t'},'LineWidth',2,'FontSize',14);
+    ylabel({'Density of ln T'},'LineWidth',2,...
         'FontSize',14);
 end
 

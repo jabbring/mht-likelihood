@@ -12,7 +12,7 @@ clc
 format long
 
 %% settings
-dispplot = false; % set to true to have script plot results
+dispplot = true; % set to true to have script plot results
 
 nrunobs=4;
 nrshocks=0;
@@ -94,9 +94,10 @@ if dispplot
     axes1 = axes('Parent',fig1,'YScale','log','YMinorTick','on','LineWidth',1,'FontSize',14);
     box(axes1,'on');
     hold(axes1,'all');
-    plot(exp(lerr),'LineWidth',2,'Color',[0 0 0]);
-    xlabel({'M parameter'},'LineWidth',2,'FontSize',14);
-    ylabel({'absolute error in log likelihood'},'LineWidth',2,...
+    plot(exp(lerr),'LineWidth',2,'Color','blue','Marker','o');
+    title('Figure 1. Approximation Error of the Log Likelihood for Various M');
+    xlabel({'M'},'LineWidth',2,'FontSize',14);
+    ylabel({'Average absolute error in log likelihood'},'LineWidth',2,...
         'FontSize',14);
 end
 
