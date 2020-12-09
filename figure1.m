@@ -90,8 +90,16 @@ for j=1:100
     lerr=lerr+le{j}/100;
 end
 if dispplot
-    llhplot(exp(lerr))
+    fig1 = figure('PaperSize',[20.98 29.68],'Color',[1 1 1]);
+    axes1 = axes('Parent',fig1,'YScale','log','YMinorTick','on','LineWidth',1,'FontSize',14);
+    box(axes1,'on');
+    hold(axes1,'all');
+    plot(exp(lerr),'LineWidth',2,'Color',[0 0 0]);
+    xlabel({'M parameter'},'LineWidth',2,'FontSize',14);
+    ylabel({'absolute error in log likelihood'},'LineWidth',2,...
+        'FontSize',14);
 end
+
 f1=fopen('fig1times.tex','w'); 
 fprintf(f1,'Note: Mean calculation times are $%0.5e$ seconds (analytical) and ',...
     mean(timea));

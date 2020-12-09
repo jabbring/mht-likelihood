@@ -13,7 +13,9 @@ clear
 clc
 format short
 
-%% parameters
+%% settings
+dispplot = true; % set to true to have script plot results
+
 n=1e5; % sample size
 neval = 250;
 nbins = 100;
@@ -65,24 +67,29 @@ cens=(y==ymax);
 %% inverse LT
 
 % smoothing
-%figure(1)
 [fsmooth,xi] = ksdensity(log(y),'kernel','epanechnikov','width',...
         5*sqrt(mean(log(y).^2)-mean(log(y))^2)/sqrt(n),'npoints',nbins);
 probs=numinvlap(eval(['@' unobstype shocktype]),par,exp(xi'),false,...
                                     ones(length(xi),1),nrunobs,nrshocks);
-%plot(xi,fsmooth,xi,probs)
 
 % histogram
-%figure(2)
-%hold off
-intervalsize = (xi(end)-xi(1))/(nbins-1);
-xibounds = xi-intervalsize/2:intervalsize:xi(end)+intervalsize/2;
-nr=histc(log(y),xibounds); 
-fhist=nr(1:end-1)'/length(y)/intervalsize;
-%bar((xibounds(2:end)+xibounds(1:end-1))/2,fhist,'FaceColor',[0 0 1],...
-%                                   'EdgeColor',[1 1 1],'BarWidth',0.5);
-%hold on
-%plot(xi,probs,'LineWidth',2,'Color','green');
+if dispplot
+    fig3 = figure('PaperSize',[20.98 29.68],'Color',[1 1 1]);
+    intervalsize = (xi(end)-xi(1))/(nbins-1);
+    xibounds = xi-intervalsize/2:intervalsize:xi(end)+intervalsize/2;
+    nr=histc(log(y),xibounds); 
+    fhist=nr(1:end-1)'/length(y)/intervalsize;
+    axes3 = axes('Parent',fig3,'LineWidth',1,'FontSize',14);
+    box(axes3,'on');
+    hold(axes3,'all');
+    bar((xibounds(2:end)+xibounds(1:end-1))/2,fhist,'FaceColor',[0 0 1],...
+                                   'EdgeColor',[1 1 1],'BarWidth',0.5);
+    plot(xi,probs,'LineWidth',2,'Color','green');
+    plot(xi,fsmooth,'LineWidth',2,'Color','red','LineStyle','--')
+    xlabel({'log(T)'},'LineWidth',2,'FontSize',14);
+    ylabel({'pdf'},'LineWidth',2,...
+        'FontSize',14);
+end
 
 %% Export data to csv files for TikZ
 

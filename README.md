@@ -19,11 +19,7 @@ and displays the resulting figures and tables in a pdf file `replication.pdf`.
 
 ![output example](replicationexample.png)
 
-As an extra check, the scripts for computing Figures 1 and 2 can be adapted, by changing `dispplot=false` into `dispplot=true`, to plot these figures directly. This uses the following functions:
-- `llhplot.m` - called from `figure1.m` if `dispplot=true` (default: `false`)
-- `scatterplot.m` - called from `figure2.m` if `dispplot=true` (default: `false`)
-
-The repository also contains a script
+As an extra check, the scripts for computing Figures 1-4 can be adapted, by changing `dispplot=false` into `dispplot=true`, to plot these figures directly. The repository also contains a script
 
 - `simtest.m` - simulates data and estimates the model on these data
 

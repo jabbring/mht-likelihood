@@ -17,7 +17,7 @@ clc
 format short
 
 %% settings
-dispplot = false; % set to true to have script plot results
+dispplot = true; % set to true to have script plot results
 
 %% read strike data  
 rawdata=load('strkdur.asc');
@@ -121,8 +121,13 @@ save('weibullmph','par'); % for checking numerical gradient
 
 %% plot all three hazard rates if dissplot=true
 if dispplot
-    figure(1)
-    plot(t,[emphaz weibullhaz ighaz]);
+    fig4 = figure('PaperSize',[20.98 29.68],'Color',[1 1 1]);
+    axes4 = axes('Parent',fig4,'LineWidth',1,'FontSize',14);
+    box(axes4,'on');
+    hold(axes4,'all');
+    plot(t,emphaz,t,weibullhaz,t,ighaz,'LineWidth',2);
+    xlabel({'t'},'LineWidth',2,'FontSize',14);
+    ylabel({'hazard'},'LineWidth',2,'FontSize',14);
 end
 
 %% Export data to csv file for TikZ

@@ -20,9 +20,18 @@ lnp=log(numinvlap2(@pointpoint,[0; 0],y,25,false,[],1,0)./y);
 lap=-0.5*log(2*pi)-1.5*log(y)-(y-1).^2./(2.*y);
 err=abs(lnp-lap);
 if dispplot
-    scatterplot(lap,err)
+    fig2 = figure('Color',[1 1 1]);
+    axes2 = axes('Parent',fig2,'YScale','log','YMinorTick','on','LineWidth',1,...
+        'FontSize',14);
+    xlim(axes2,[-28 0]);
+    ylim(axes2,[1e-12 1.5e1]);
+    box(axes2,'on');
+    hold(axes2,'all');
+    scatter(lap,err,'MarkerFaceColor',[0 0 0],'MarkerEdgeColor',[0 0 0],...
+        'Marker','.');
+    xlabel('log probability density','LineWidth',2,'FontSize',14);
+    ylabel('absolute error','LineWidth',2,'FontSize',14);
 end
-
 
 %% Export data to csv file for TikZ
 
