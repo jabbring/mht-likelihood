@@ -1,3 +1,17 @@
+% //////////////////////////////////////////////////////////////////////
+% Abbring and Salimans (2021)
+% - Simulates data once and estimates MHT model
+%
+% dependencies: simmht.m mhtmle.m
+% //////////////////////////////////////////////////////////////////////
+
+%% clear screen and workspace and set seed
+clear
+clc
+format short
+
+rng(230670) % set seed for random starting values MPH estimation
+
 %% clear screen and workspace
 clear
 clc

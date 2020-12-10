@@ -11,10 +11,12 @@
 %           weibullmph.mat - MPH results for gradient check (numgrad.m) 
 % //////////////////////////////////////////////////////////////////////
 
-%% clear screen and workspace
+%% clear screen and workspace and set seed
 clear
 clc
 format short
+
+rng(230676) % set seed for random starting values MPH estimation
 
 %% settings
 dispplot = true; % set to true to have script plot results
@@ -53,8 +55,8 @@ ighaz=igpdf./(1-igcdf);
 
 %% estimate hazard rate Weibull MPH model
 disp('Estimating Weibull MPH model');
-rng(230676)
-options=optimset('GradObj','on','LargeScale','off','HessUpdate','bfgs','Display','off','MaxIter',1000);
+options=optimset('GradObj','on','LargeScale','off','HessUpdate','bfgs',...
+    'Display','off','MaxIter',1000);
 
 % initialize
 llh=[];

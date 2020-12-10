@@ -10,10 +10,12 @@
 %                       corresponding llh column IV for figure4.m
 % //////////////////////////////////////////////////////////////////////
 
-%% clear screen and workspace
+%% clear screen and workspace and set seed
 clear
 clc
 format short
+
+rng(230670) % set seed for random starting values MHT estimation
 
 %% read strike data   
 rawdata=load('strkdur.asc');
@@ -25,7 +27,6 @@ estimates=nan(6,14);
 stderrors=estimates;
 loglik=nan(6,1);
 comptime = [];
-rng(230670); % seed for random start values
 % Columns I-VI
 for i = 1:6
     fprintf('Calculating Table 1 Column %1d\n',i)

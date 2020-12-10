@@ -8,10 +8,12 @@
 %           fig3hist.csv - data histogram
 % //////////////////////////////////////////////////////////////////////
 
-%% clear screen and workspace
+%% clear screen and workspace and set seed
 clear
 clc
 format short
+
+rng(230670);
 
 %% settings
 dispplot = true; % set to true to have script plot results
