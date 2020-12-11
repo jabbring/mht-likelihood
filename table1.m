@@ -127,17 +127,18 @@ for l=1:5
     fprintf(f1,'%s\n','\midrule');
 end
 for l=1:5
-    s=sprintf('$\\pi_%d$ & $%6.3f$ & $%6.3f$ & $%6.3f$ & $%6.3f$ & $%6.3f$ & $%6.3f$\\tabularnewline',...
+    s=sprintf('$\\pi_%d$ & $%6.0f$ & $%6.3f$ & $%6.3f$ & $%6.3f$ & $%6.3f$ & $%6.3f$\\tabularnewline',...
         [l;estimates(:,9+l)]);
         fprintf(f1,'%s\n',strrep(s,'NaN',''));
-    s=sprintf('& $(%6.3f)$ & $(%6.3f)$ & $(%6.3f)$ & $(%6.3f)$ & $(%6.3f)$ & $(%6.3f)$\\tabularnewline',...
+    s=sprintf('& $(%6.0f)$ & $(%6.3f)$ & $(%6.3f)$ & $(%6.3f)$ & $(%6.3f)$ & $(%6.3f)$\\tabularnewline',...
         stderrors(:,9+l));
         fprintf(f1,'%s\n',strrep(s,'(   NaN)',''));
     fprintf(f1,'%s\n','\midrule');
 end
 fprintf(f1,'%s\n','\midrule');
-fprintf(f1,'$\\ell_N$ & $%6.1f$ & $%6.1f$ & $%6.1f$ & $%6.1f$ & $%6.1f$ & $%6.1f$\\tabularnewline\n',...
+s=sprintf('$\\ell_N$ & $%6.1f$ & $%6.1f$ & $%6.1f$ & $%6.1f$ & $%6.1f$ & $%6.1f$\\tabularnewline\n',...
     loglik);
+fprintf(f1,'%s\n',strrep(s,'NaN',''));
 fprintf(f1,'%s\n','\bottomrule');
 fprintf(f1,'%s\n','\end{tabular}}');
 fprintf(f1,'%s\n','\end{center}');

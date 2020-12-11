@@ -6,17 +6,19 @@
 % Output: - fig1.csv
 % //////////////////////////////////////////////////////////////////////
 
-%% clear screen and workspace
+%% clear screen and workspace and set seed
 clear
 clc
 format long
 
+est=false;
+rng(230670) % seed for random starting values
+
 %% settings
 dispplot = true; % set to true to have script plot results
 
-nrunobs=4;
+nrunobs=3;
 nrshocks=0;
-est=0;
 
 %% read strike data
 rawdata=load('strkdur.asc');
@@ -32,7 +34,7 @@ fprintf('.');
 %% parameters analytical, estimated or start
 
 if est
-    [parMLE, stderr]=migaussmle(y,cens,x,nrunobs);
+    [parMLE,cov,llh,opt]=migaussmle(y,cens,x,nrunobs);
 else
     % set starting values
     mm=mean(y);
@@ -81,7 +83,8 @@ logerr=abs(sum(log(n_probs))-sum(log(a_probs)));
 %% graph maker
 le{j}=zeros(30,1);
 for i=1:30
-    le{j}(i)=log(abs(sum(log(numinvlap2(@pointpoint,par2,y,i,cens,x,nrunobs,nrshocks)./y))-sum(log(a_probs))));
+    le{j}(i)=log(abs(sum(log(numinvlap2(@pointpoint,par2,y,i,cens,x,...
+        nrunobs,nrshocks)./y))-sum(log(a_probs))));
 end
 end
 fprintf('\n');

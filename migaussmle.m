@@ -1,4 +1,5 @@
-function [parMLE, stderr]=migaussmle(y,cens,x,nrunobs)
+function [parMLE,cov,llh,opt]=migaussmle(y,cens,x,nrunobs)
+%function [parMLE, stderr]=migaussmle(y,cens,x,nrunobs)
 
 % precision
 tc=1e-6; % tolerance on negative loglikelihood value
@@ -39,9 +40,9 @@ end
 
 % maximize the loglikelihood function
 objfun=@(par)nllhmigauss(par,y,cens,x,nrunobs);
-ktropts=optimset('Display','iter','GradObj','on','AlwaysHonorConstraints','bounds','TolFun',tc,'TolX',tp); %'GradConstr','on',
-%[parMLE,fval,flag]=ktrlink(objfun,startvalues,A,b,[],[],lb,ub,[],ktropts);
-[parMLE,fval,flag]=fmincon(objfun,startvalues,A,b,[],[],lb,ub,[],ktropts);
+options=optimset('Display','off','GradObj','on','AlwaysHonorConstraints','bounds','TolFun',tc,'TolX',tp); %'GradConstr','on',
+[parMLE,nllh,opt]=fmincon(objfun,startvalues,A,b,[],[],lb,ub,[],options);
+llh=-nllh;
 
 % obtain hessian at solution
 hsc=1e-6;
@@ -52,11 +53,12 @@ for i=1:k
     par1(i)=par1(i)-hsc;
     par2=parMLE;
     par2(i)=par2(i)+hsc;
-    [llh, grad1]=nllhmigauss(par1,y,cens,x,nrunobs);
-    [llh, grad2]=nllhmigauss(par2,y,cens,x,nrunobs);
+    [nllh, grad1]=nllhmigauss(par1,y,cens,x,nrunobs);
+    [nllh, grad2]=nllhmigauss(par2,y,cens,x,nrunobs);
     hess(:,i)=0.5*(grad2-grad1)/hsc;
 end
 hess=0.5*hess+0.5*hess';
 
 % asymptotic standard errors
-stderr=sqrt(diag(inv(hess)));
+cov=inv(hess);
+%stderr=sqrt(diag(cov));

@@ -1,86 +1,73 @@
 % //////////////////////////////////////////////////////////////////////
-% Abbring and Salimans (2021), Table 1 (fka laplace/test.m)
-% - Maximum Likelihood Estimates for Kennan’s (1985) Strike Duration 
-%   Data
-%
-% dependencies: strkdur.asc mhtmle.m
-% output:   tab1.tex - LaTeX version of Table 1
-%           tab1times.tex - LaTeX code with comp times Table 1
-%           tab1.mat - contains structure `est` with estimates and 
-%                       corresponding llh column IV for figure4.m
+% Abbring and Salimans (2021), Table 1 Column I-V (fka laplace/test.m)
+% - Comparison with MLE based on Exact Mixed Inverse Gaussian Likelihood
 % //////////////////////////////////////////////////////////////////////
 
-%% clear screen and workspace
+%% clear screen and workspace and set seed
 clear
 clc
 format short
 
-%% settings
-M=15;
+rng(230670) % set seed for random starting values MHT estimation
 
-%% read strike data   
+%% read strike data
 rawdata=load('strkdur.asc');
 x=rawdata(:,2);
 y=rawdata(:,1)/7;
 
-%% estimation
+%% Estimation
 estimates=nan(6,14);
 stderrors=estimates;
 loglik=nan(6,1);
-comptime = [];
-rng(230670); % seed for random start values
+comptime=loglik;
 % Columns I-VI
-for i = 1:6
-    fprintf('Calculating Table 1 Column %1d\n',i)
-    L = min(i,5); % nrunobs
-    Q = max(i-5,0); % nrshocks
-    tic;
-    [est,ses,llh,opt]=mhtmle2(y,M,false,x,'point','point',L,Q);
-    comptime=[comptime;toc];
-    % last 4 arguments are: unobs_type, shock_type, nrunobs (L), nrshocks 
-    % (Q); unobs_type and shock_type can be either 'gamma' or 'point'
-    % disp(opt)
-    if i==4
-        save('tab1','est','llh') % save estimates IV for Figure 4
-    end
-    loglik(i)=llh;
-    estimates(i,1)=est.bm_var; % sigma^2
-    if Q>0
-        estimates(i,2)=est.shock_lambda;
-        estimates(i,3)=est.shock_nu;
-    end
-    estimates(i,4)=est.beta; % beta
-    [estimates(i,5:4+L),srtidx]=sort(est.unobs_v); % v
-    estimates(i,10:9+L)=est.unobs_p(srtidx); % pi
+for l = 1:5
+    fprintf('Calculating Table 1 (BM) Column %1d\n',l)
+    tic
+    [est,cov,llh,opt]=migaussmle(y,y*0,x,l);
+    comptime(l)=toc;
+    loglik(l)=llh;
+ 
+    mu=est(1);
+    var=est(2)/mu^2;
+    v=[1; est(3:1+l)]/mu;
+    p=[1-sum(est(2+l:2*l)); est(2+l:2*l)];
+    beta=est(end);
+
+    estimates(l,1)=var; % sigma^2
+    estimates(l,4)=beta; % beta
+    [estimates(l,5:4+l),srtidx]=sort(v); % v
+    estimates(l,10:9+l)=p(srtidx); % pi
     
-    stderrors(i,1)=ses.bm_var; 
-    if Q>0
-        stderrors(i,2)=ses.shock_lambda;
-        stderrors(i,3)=ses.shock_nu;
-    end
-    stderrors(i,4)=ses.beta; 
-    stderrors(i,5:4+L)=ses.unobs_v(srtidx);
-    stderrors(i,10:9+L)=ses.unobs_p(srtidx);
+    dvar = [-2*var/mu 1/mu^2];
+    stderrors(l,1)=sqrt(dvar*cov(1:2,1:2)*dvar');
+    stderrors(l,4)=sqrt(cov(end,end)); 
+    dv = [-v [zeros(1,l-1);eye(l-1)]]/mu; 
+    stdv = sqrt(diag(dv*cov([1 3:1+l],[1 3:1+l])*dv'));
+    stderrors(l,5:4+l)=stdv(srtidx);
+    dp = [-ones(1,l-1);eye(l-1)];
+    stdp = sqrt(diag(dp*cov(2+l:2*l,2+l:2*l)*dp'));
+    stderrors(l,10:9+l)=stdp(srtidx);
 end
 
 %% Export tex file with computation times
-f1=fopen('tab1timeslowM.tex','w'); 
-fprintf(f1,'Computation times (low $M$; in seconds):');
+f1=fopen('tab1migtimes.tex','w'); 
+fprintf(f1,'Computation times (analytical IG; in seconds):');
 fprintf(f1,'\\begin{tabular}{cccccc}');
 fprintf(f1,'I&II&III&IV&V&VI\\\\');
 fprintf(f1,'$%4.1f$&$%4.1f$&$%4.1f$&$%4.1f$&$%4.1f$&$%4.1f$',comptime);
 fprintf(f1,'\\end{tabular}\n');
 fclose(f1);
 
-%% Export tex file with Table 1 for low M 
-f1=fopen('tab1lowM.tex','w'); 
+%% Export tex file with Table 1 (incl macros estimates cited in main text)
+f1=fopen('tab1mig.tex','w'); 
 fprintf(f1,'\\def\\vone{$%6.1f$}\n',estimates(4,4+1));
 fprintf(f1,'\\def\\vtwo{$%6.1f$}\n',estimates(4,4+2));
 fprintf(f1,'\\def\\vthree{$%6.1f$}\n',estimates(4,4+3));
 fprintf(f1,'\\def\\vfour{$%6.1f$}\n',estimates(4,4+4));
 
 fprintf(f1,'%s\n','\begin{table}');
-fprintf(f1,'\\caption{Replicating Table \\ref{table:strike} with $M=%2i$}',M);
+fprintf(f1,'%s\n','\caption{Replicating Table \ref{table:strike} Using Inverse Gaussian Pdf}');
 fprintf(f1,'%s\n','\vspace*{0.5em}');
 fprintf(f1,'%s\n','\begin{center}');
 fprintf(f1,'%s\n','\small{\begin{tabular}{ccccccc}');
@@ -88,8 +75,8 @@ fprintf(f1,'%s\n','\toprule');
 fprintf(f1,'%s\n','& I & II & III & IV & V & VI\tabularnewline');
 fprintf(f1,'%s\n','\midrule');
 fprintf(f1,'%s\n','\midrule');
-fprintf(f1,'%s\n','$\mu$ & $1$ & $1$ & $1$ & $1$ & $1$ & $1$ \tabularnewline');
-fprintf(f1,'%s\n','& $(0)$ & $(0)$ & $(0)$ & $(0)$ & $(0)$ & $(0)$ \tabularnewline');
+fprintf(f1,'%s\n','$\mu$ & $1$ & $1$ & $1$ & $1$ & $1$ &  \tabularnewline');
+fprintf(f1,'%s\n','& $(0)$ & $(0)$ & $(0)$ & $(0)$ & $(0)$ &  \tabularnewline');
 fprintf(f1,'%s\n','\midrule');
 s=sprintf('$\\sigma^{2}$ & $%6.3f$ & $%6.3f$ & $%6.3f$ & $%6.3f$ & $%6.3f$ & $%6.3f$\\tabularnewline',...
     estimates(:,1));
@@ -147,3 +134,4 @@ fprintf(f1,'%s\n','\end{center}');
 fprintf(f1,'%s\n','{\footnotesize Note: The drift is normalized to $1$ per week. All specifications include a single covariate, \cites{jem85:kennan} deseasonalized and detrended log industrial production.  Asymptotic standard errors are in parentheses.}');
 fprintf(f1,'%s\n','\end{table}');
 fclose(f1);
+
