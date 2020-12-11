@@ -8,7 +8,7 @@ The results in [Abbring and Salimans (2021)](https://arxiv.org/abs/1905.03463) w
 - `figure2.m` -  replicates Figure 2
 - `figure3.m` -  replicates Figure 3
 - `table1.m` - replicates Table 1
-- `table1lowM` - recalculates Table 1 with *M=15*
+- `table1lowM.m` - recalculates Table 1 with *M=15*
 - `table1mig.m` - recalculates Columns I-V of table one using the exact likelihood for the Gaussian case
 - `figure4.m` - replicates Figure 4
 - `checkgradient.m` - checks the analytic gradients against numerical ones
