@@ -9,9 +9,9 @@ The results in [Abbring and Salimans (2021)](https://arxiv.org/abs/1905.03463) w
 - `figure3.m` -  replicates Figure 3
 - `table1.m` - replicates Table 1
 - `table1lowM` - recalculates Table 1 with *M=15*
+- `table1mig.m` - recalculates Columns I-V of table one using the exact likelihood for the Gaussian case
 - `figure4.m` - replicates Figure 4
 - `checkgradient.m` - checks the analytic gradients against numerical ones
-<!-- - `table1BM.m` - recalculates Columns I-V of table one using the exact likelihood for the Gaussian case-->
 
 and displays the resulting figures and tables in a `pdf` file `replication.pdf` (note that TeX Live is only used in the last step, which requires pdfTeX to process the `tex` files written by the MATLAB scripts).
 
