@@ -16,7 +16,7 @@ clc
 format short
 
 %% settings
-M=15;
+M=20;
 
 %% read strike data   
 rawdata=load('strkdur.asc');
@@ -28,7 +28,7 @@ estimates=nan(6,14);
 stderrors=estimates;
 loglik=nan(6,1);
 comptime = [];
-rng(230670); % seed for random start values
+rng(230676); % seed for random start values
 % Columns I-VI
 for i = 1:6
     fprintf('Calculating Table 1 Column %1d\n',i)

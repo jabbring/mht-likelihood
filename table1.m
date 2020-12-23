@@ -15,7 +15,7 @@ clear
 clc
 format short
 
-rng(230670) % set seed for random starting values MHT estimation
+rng(230681) % set seed for random starting values MHT estimation
 
 %% read strike data   
 rawdata=load('strkdur.asc');

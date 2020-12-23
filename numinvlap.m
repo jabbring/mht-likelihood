@@ -21,7 +21,7 @@ function [probs, grad] = numinvlap(ltfun,par,y,varargin)
 A=22;
 l=1;
 N=9;
-M=30;
+M=25;
 
 % % as in Rogers(2000)
 % A=22;

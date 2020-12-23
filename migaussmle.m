@@ -2,8 +2,8 @@ function [parMLE,cov,llh,opt]=migaussmle(y,cens,x,nrunobs)
 %function [parMLE, stderr]=migaussmle(y,cens,x,nrunobs)
 
 % precision
-tc=1e-6; % tolerance on negative loglikelihood value
-tp=1e-6; % tolerance on parameter change
+%tc=1e-6; % tolerance on negative loglikelihood value
+%tp=1e-6; % tolerance on parameter change
 
 % scale of data
 mm=mean(y);
@@ -40,7 +40,8 @@ end
 
 % maximize the loglikelihood function
 objfun=@(par)nllhmigauss(par,y,cens,x,nrunobs);
-options=optimset('Display','off','GradObj','on','AlwaysHonorConstraints','bounds','TolFun',tc,'TolX',tp); %'GradConstr','on',
+%options=optimset('Display','off','GradObj','on','AlwaysHonorConstraints','bounds','TolFun',tc,'TolX',tp); %'GradConstr','on',
+options=optimset('Display','off','GradObj','on','AlwaysHonorConstraints','bounds');
 [parMLE,nllh,opt]=fmincon(objfun,startvalues,A,b,[],[],lb,ub,[],options);
 llh=-nllh;
 

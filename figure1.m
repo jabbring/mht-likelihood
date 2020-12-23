@@ -17,8 +17,10 @@ rng(230670) % seed for random starting values
 %% settings
 dispplot = true; % set to true to have script plot results
 
-nrunobs=3;
+nrunobs=4;
 nrshocks=0;
+
+nrsim = 100;
 
 %% read strike data
 rawdata=load('strkdur.asc');
@@ -29,7 +31,7 @@ cens=false(length(y),1);
 
 timea = [];
 timen = [];
-for j=1:100
+for j=1:nrsim
 fprintf('.');
 %% parameters analytical, estimated or start
 
@@ -89,8 +91,8 @@ end
 end
 fprintf('\n');
 lerr=zeros(30,1);
-for j=1:100
-    lerr=lerr+le{j}/100;
+for j=1:nrsim
+    lerr=lerr+le{j}/nrsim;
 end
 if dispplot
     fig1 = figure('PaperSize',[20.98 29.68],'Color',[1 1 1]);
