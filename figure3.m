@@ -16,7 +16,7 @@ format short
 rng(230670);
 
 %% settings
-dispplot = true; % set to true to have script plot results
+dispplot = false; % set to true to have script plot results
 
 n=1e3; % sample size
 neval = 250;
