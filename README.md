@@ -2,6 +2,8 @@
 
 This repository contains MATLAB code for replicating the numerical results in [Abbring and Salimans (2021)](https://arxiv.org/abs/1905.03463). This covers the computation of the likelihood of the [mixed hitting-time model](http://jaap.abbring.org/images/pdf/ecta7312.pdf), maximum likelihood estimation of parametric versions of this model, and an application to the analysis of [Kennan's (1985) strike data](https://www.ssc.wisc.edu/~jkennan/research/JEM85.pdf). 
 
+## Makefile and MATLAB scripts
+
 The results in [Abbring and Salimans (2021)](https://arxiv.org/abs/1905.03463) were obtained using [v1.1.0](https://github.com/jabbring/mht-likelihood/releases/tag/v1.1.0) of this package, by running `make` on a MacBook Pro (2018, 15inch, 2.9GHz 6-Core Intel Core i9, 32 GB 2400 MHz DDR4) with macOS 10.15.7, MATLAB R2020b (with Optimization Toolbox), and TeX Live 2018. This executes the MATLAB scripts
 
 - [figure1.m](https://github.com/jabbring/mht-likelihood/blob/master/figure1.m) -  replicates Figure 1
@@ -19,7 +21,9 @@ and displays the resulting figures and tables in a `pdf` file [replication.pdf](
 
 Users can adapt these scripts to apply the procedures they call in other contexts. In particular, `table1.m` shows how to use the package to estimate the MHT model with jumps. 
 
-The scripts require a range of functions (1-5) and a data set (6).
+The scripts require a range of functions and a data set.
+
+## MATLAB functions
 
 ### 1. Model specification
 
@@ -58,7 +62,7 @@ Users can extend the set of specifications by adding different functions `<heter
 - [randraw.m](https://github.com/jabbring/mht-likelihood/blob/master/randraw.m) -  efficient random number generator (by Alex Bar Guy and Alexander Podgaetsky)
 - [simmht.m](https://github.com/jabbring/mht-likelihood/blob/master/simmht.m) - simulates durations from mixed hitting time model
 
-### 6. Data
+## Data
 
 - [strkdur.asc](https://github.com/jabbring/mht-likelihood/blob/master/strkdur.asc) - Fixed format text file with [Kennan's (1985) strike data](https://www.ssc.wisc.edu/~jkennan/research/JEM85.pdf) (source: [Cameron and Trivedi’s, 2005, data sets page](http://cameron.econ.ucdavis.edu/mmabook/mmadata.html)).
 
