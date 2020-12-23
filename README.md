@@ -17,7 +17,9 @@ The results in [Abbring and Salimans (2021)](https://arxiv.org/abs/1905.03463) w
 
 and displays the resulting figures and tables in a `pdf` file [replication.pdf](https://github.com/jabbring/mht-likelihood/blob/master/replication.pdf) (note that TeX Live is only used in the last step, which requires pdfTeX to process the `tex` files written by the MATLAB scripts). 
 
-As an extra check, the scripts for computing Figures 1-4 can be adapted, by changing `dispplot=false` into `dispplot=true`, to plot these figures directly. The repository also contains a script
+As an extra check, the scripts for computing Figures 1-4 can be adapted, by changing `dispplot=false` into `dispplot=true`, to plot these figures directly. 
+
+The repository also contains a script
 
 - [simtest.m](https://github.com/jabbring/mht-likelihood/blob/master/simtest.m) - simulates data and estimates the model on these data
 
