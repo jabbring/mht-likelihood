@@ -62,7 +62,7 @@ Users can extend the set of specifications by adding different functions `<heter
 
 ### 6. Data
 
-- [strdur.asc](https://github.com/jabbring/mht-likelihood/blob/master/strdur.asc) - Fixed format text file with [Kennan's (1985) strike data](https://www.ssc.wisc.edu/~jkennan/research/JEM85.pdf) (source: [Cameron and Trivedi’s, 2005, data sets page](http://cameron.econ.ucdavis.edu/mmabook/mmadata.html)).
+- [strkdur.asc](https://github.com/jabbring/mht-likelihood/blob/master/strkdur.asc) - Fixed format text file with [Kennan's (1985) strike data](https://www.ssc.wisc.edu/~jkennan/research/JEM85.pdf) (source: [Cameron and Trivedi’s, 2005, data sets page](http://cameron.econ.ucdavis.edu/mmabook/mmadata.html)).
 
 ## References
 - Abbring, Jaap H., and Tim Salimans (2021), “[The likelihood of mixed hitting times](https://arxiv.org/abs/1905.03463)”, *Journal of Econometrics*, forthcoming. arXiv:1905.03463 \[econ.EM\].
