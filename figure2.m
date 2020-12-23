@@ -12,7 +12,7 @@ clc
 format long
 
 %% settings
-dispplot = true; % set to true to have script plot results
+dispplot = false; % set to true to have script plot results
 
 %% calculate approximations
 y=(0.1:0.1:44)';
