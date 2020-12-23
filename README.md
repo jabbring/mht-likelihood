@@ -13,15 +13,13 @@ The results in [Abbring and Salimans (2021)](https://arxiv.org/abs/1905.03463) w
 - [figure4.m](https://github.com/jabbring/mht-likelihood/blob/master/figure4.m) - replicates Figure 4
 - [checkgradient.m](https://github.com/jabbring/mht-likelihood/blob/master/checkgradient.m) - checks the analytic gradients against numerical ones
 
-and displays the resulting figures and tables in a `pdf` file [replication.pdf](https://github.com/jabbring/mht-likelihood/blob/master/replication.pdf) (note that TeX Live is only used in the last step, which requires pdfTeX to process the `tex` files written by the MATLAB scripts). 
-
-As an extra check, the scripts for computing Figures 1-4 can be adapted, by changing `dispplot=false` into `dispplot=true`, to plot these figures directly. 
-
-The repository also contains a script
+and displays the resulting figures and tables in a `pdf` file [replication.pdf](https://github.com/jabbring/mht-likelihood/blob/master/replication.pdf) (note that TeX Live is only used in the last step, which requires pdfTeX to process the `tex` files written by the MATLAB scripts). As an extra check, the scripts for computing Figures 1-4 can be adapted, by changing `dispplot=false` into `dispplot=true`, to plot these figures directly. The repository also contains a script
 
 - [simtest.m](https://github.com/jabbring/mht-likelihood/blob/master/simtest.m) - simulates data and estimates the model on these data
 
-Users can adapt these scripts to apply the procedures they call in other contexts. In particular, `table1.m` shows how to use the package to estimate the MHT model with jumps. The scripts require a range of functions and a data set.
+Users can adapt these scripts to apply the procedures they call in other contexts. In particular, `table1.m` shows how to use the package to estimate the MHT model with jumps. 
+
+The scripts require a range of functions (1-5) and a data set (6).
 
 ### 1. Model specification
 
