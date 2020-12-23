@@ -75,12 +75,12 @@ probs=numinvlap(eval(['@' unobstype shocktype]),par,exp(xi'),false,...
                                     ones(length(xi),1),nrunobs,nrshocks);
 
 % histogram
+intervalsize = (xi(end)-xi(1))/(nbins-1);
+xibounds = xi-intervalsize/2:intervalsize:xi(end)+intervalsize/2;
+nr=histc(log(y),xibounds); 
+fhist=nr(1:end-1)'/length(y)/intervalsize;
 if dispplot
     fig3 = figure('PaperSize',[20.98 29.68],'Color',[1 1 1]);
-    intervalsize = (xi(end)-xi(1))/(nbins-1);
-    xibounds = xi-intervalsize/2:intervalsize:xi(end)+intervalsize/2;
-    nr=histc(log(y),xibounds); 
-    fhist=nr(1:end-1)'/length(y)/intervalsize;
     axes3 = axes('Parent',fig3,'LineWidth',1,'FontSize',14);
     box(axes3,'on');
     hold(axes3,'all');
