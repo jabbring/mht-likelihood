@@ -25,7 +25,7 @@ The repository also contains a script
 
 Users can adapt these scripts to apply the procedures they call in other contexts. In particular, `table1.m` shows how to use the package to estimate the MHT model with jumps. 
 
-The scripts require a range of [MATLAB functions](functions) and a [data set](data).
+The scripts require a range of [MATLAB functions](#functions) and a [data set](#data).
 
 ## Functions
 
