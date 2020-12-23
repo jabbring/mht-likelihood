@@ -4,7 +4,7 @@ This repository contains MATLAB code for replicating the numerical results in [A
 
 ## Makefile and scripts
 
-The results in [Abbring and Salimans (2021)](https://arxiv.org/abs/1905.03463) were obtained using [v1.1.0](https://github.com/jabbring/mht-likelihood/releases/tag/v1.1.0) of this package, by running `make` on a MacBook Pro (2018, 15inch, 2.9GHz 6-Core Intel Core i9, 32 GB 2400 MHz DDR4) with macOS 10.15.7, MATLAB R2020b (with Optimization Toolbox), and TeX Live 2018. This executes the MATLAB scripts
+The results in [Abbring and Salimans (2021)](https://arxiv.org/abs/1905.03463) were obtained using [v1.1.0](https://github.com/jabbring/mht-likelihood/releases/tag/v1.1.0) of this package, by running `make` on a MacBook Pro (2018, 15inch, 2.9GHz 6-Core Intel Core i9, 32 GB 2400 MHz DDR4) with macOS 10.15.7, MATLAB R2020b (with Optimization Toolbox), and TeX Live 2018. As specified in the [makefile](https://github.com/jabbring/mht-likelihood/blob/master/makefile), this executes the MATLAB scripts
 
 - [figure1.m](https://github.com/jabbring/mht-likelihood/blob/master/figure1.m) -  replicates Figure 1
 - [figure2.m](https://github.com/jabbring/mht-likelihood/blob/master/figure2.m) -  replicates Figure 2
@@ -15,7 +15,7 @@ The results in [Abbring and Salimans (2021)](https://arxiv.org/abs/1905.03463) w
 - [figure4.m](https://github.com/jabbring/mht-likelihood/blob/master/figure4.m) - replicates Figure 4
 - [checkgradient.m](https://github.com/jabbring/mht-likelihood/blob/master/checkgradient.m) - checks the analytic gradients against numerical ones
 
-and displays the resulting figures and tables in a `pdf` file [replication.pdf](https://github.com/jabbring/mht-likelihood/blob/master/replication.pdf) (note that TeX Live is only used in the last step, which requires pdfTeX to process the `tex` files written by the MATLAB scripts), as specified in the [makefile](https://github.com/jabbring/mht-likelihood/blob/master/makefile). 
+and displays the resulting figures and tables in a `pdf` file [replication.pdf](https://github.com/jabbring/mht-likelihood/blob/master/replication.pdf) (note that TeX Live is only used in the last step, which requires pdfTeX to process the `tex` files written by the MATLAB scripts). 
 
 As an extra check, the scripts for computing Figures 1-4 can be adapted, by changing `dispplot=false` into `dispplot=true`, to plot these figures directly. The repository also contains a script
 
