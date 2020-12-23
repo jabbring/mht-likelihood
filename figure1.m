@@ -15,7 +15,7 @@ est=false;
 rng(230670) % seed for random starting values
 
 %% settings
-dispplot = true; % set to true to have script plot results
+dispplot = false; % set to true to have script plot results
 
 nrunobs=3;
 nrshocks=0;
