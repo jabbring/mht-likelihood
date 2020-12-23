@@ -30,7 +30,7 @@ The procedures require parametric specifications `<heter>` of the unobserved het
 - [pointpoint.m](https://github.com/jabbring/mht-likelihood/blob/master/pointpoint.m) - Discrete heterogeneity and discrete shocks at Poisson times
 - [pointgamma.m](https://github.com/jabbring/mht-likelihood/blob/master/pointgamma.m) - Discrete heterogeneity and gamma shocks at Poisson times
 - [gammapoint.m](https://github.com/jabbring/mht-likelihood/blob/master/gammapoint.m) - Gamma heterogeneity and discrete shocks at Poisson times
-- [gammagamma.m]](https://github.com/jabbring/mht-likelihood/blob/master/gammagamma.m)- Gamma heterogeneity and gamma shocks at Poisson times
+- [gammagamma.m](https://github.com/jabbring/mht-likelihood/blob/master/gammagamma.m)- Gamma heterogeneity and gamma shocks at Poisson times
 
 Users can extend the set of specifications by adding different functions `<heter><shocks>`.
 
