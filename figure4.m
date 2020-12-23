@@ -19,7 +19,7 @@ format short
 rng(230676) % set seed for random starting values MPH estimation
 
 %% settings
-dispplot = true; % set to true to have script plot results
+dispplot = false; % set to true to have script plot results
 
 %% read strike data  
 rawdata=load('strkdur.asc');
