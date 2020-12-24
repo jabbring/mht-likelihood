@@ -15,9 +15,7 @@ The results in [Abbring and Salimans (2021)](https://arxiv.org/abs/1905.03463) w
 - [figure4.m](https://github.com/jabbring/mht-likelihood/blob/master/figure4.m) - replicates Figure 4
 - [checkgradient.m](https://github.com/jabbring/mht-likelihood/blob/master/checkgradient.m) - checks the analytic gradients against numerical ones
 
-and displays the resulting figures and tables in a `pdf` file [replication.pdf](https://github.com/jabbring/mht-likelihood/blob/master/replication.pdf) (note that TeX Live is only used in the last step, which requires pdfTeX to process the `tex` files written by the MATLAB scripts). 
-
-As an extra check, the scripts for computing Figures 1-4 can be adapted, by changing `dispplot=false` into `dispplot=true`, to plot these figures directly. 
+and displays the resulting figures and tables in a `pdf` file [replication.pdf](https://github.com/jabbring/mht-likelihood/blob/master/replication.pdf. Note that TeX Live is only used in the last step, which requires pdfTeX to process the `tex` files written by the MATLAB scripts. As an extra check, the scripts for computing Figures 1-4 can be adapted, by changing `dispplot=false` into `dispplot=true`, to plot these figures directly. 
 
 The repository also contains a script
 
