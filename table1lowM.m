@@ -16,7 +16,7 @@ clc
 format short
 
 %% settings
-M=20;
+M=15;
 
 %% read strike data   
 rawdata=load('strkdur.asc');

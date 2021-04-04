@@ -115,7 +115,6 @@ fprintf(f1,'mean time numerical $=%6.2f\\times$ mean time analytical\n',...
 fclose(f1);
 
 %% Export data to csv file for TikZ
-
 f1=fopen('fig1.csv','w');                % mhtellherr.csv
 fprintf(f1,'M, llherr, dummy\n');
 fprintf(f1,'%6.0f, %6.6f, 1.0\n',[(1:30)' lerr/log(10)]');

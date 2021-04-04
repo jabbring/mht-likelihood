@@ -18,7 +18,7 @@ rng(230670);
 %% settings
 dispplot = false; % set to true to have script plot results
 
-n=1e3; % sample size
+n=1e5; % sample size
 neval = 250;
 nbins = 100;
 k=1; % number of regressors
@@ -29,6 +29,12 @@ unobs_form=unobstype;
 nrunobs=2;
 v=[1; 5];
 p=[0.7; 0.3];
+
+%unobstype='gamma';
+%unobs_form=unobstype;
+%nrunobs=1;
+%v=1;
+%p=1;
 
 shocktype='gamma';
 unobs_shock=shocktype;

@@ -1,9 +1,8 @@
 function [parMLE,cov,llh,opt]=migaussmle(y,cens,x,nrunobs)
-%function [parMLE, stderr]=migaussmle(y,cens,x,nrunobs)
 
-% precision
-%tc=1e-6; % tolerance on negative loglikelihood value
-%tp=1e-6; % tolerance on parameter change
+% choose alternative information matrix estimator 
+altim = 'fd'; % 'fd': Hessian calculated using finite diff analyt score
+              % default: Hessian outputted by fminunc (BFGS)   
 
 % scale of data
 mm=mean(y);
@@ -43,22 +42,29 @@ objfun=@(par)nllhmigauss(par,y,cens,x,nrunobs);
 %options=optimset('Display','off','GradObj','on','AlwaysHonorConstraints','bounds','TolFun',tc,'TolX',tp); %'GradConstr','on',
 options=optimset('Display','off','GradObj','on','AlwaysHonorConstraints','bounds');
 [parMLE,nllh,opt]=fmincon(objfun,startvalues,A,b,[],[],lb,ub,[],options);
-llh=-nllh;
 
 % obtain hessian at solution
-hsc=1e-6;
-k=length(parMLE);
-hess=zeros(k,k);
-for i=1:k
-    par1=parMLE;
-    par1(i)=par1(i)-hsc;
-    par2=parMLE;
-    par2(i)=par2(i)+hsc;
-    [nllh, grad1]=nllhmigauss(par1,y,cens,x,nrunobs);
-    [nllh, grad2]=nllhmigauss(par2,y,cens,x,nrunobs);
-    hess(:,i)=0.5*(grad2-grad1)/hsc;
+if isequal(altim,'fd')
+    disp('Using finite differences of analytical score to estimate information matrix!')
+    hsc=1e-6;
+    k=length(parMLE);
+    hess=zeros(k,k);
+    for i=1:k
+        par1=parMLE;
+        par1(i)=par1(i)-hsc;
+        par2=parMLE;
+        par2(i)=par2(i)+hsc;
+        [nllh, grad1]=nllhmigauss(par1,y,cens,x,nrunobs);
+        [nllh, grad2]=nllhmigauss(par2,y,cens,x,nrunobs);
+        hess(:,i)=0.5*(grad2-grad1)/hsc;
+    end
+    hess=0.5*hess+0.5*hess';
+else
+  [parMLE,nllh,opt,output,grad,hess] = fminunc(objfun,...
+                              parMLE+randn(size(parMLE))/100,options);
 end
-hess=0.5*hess+0.5*hess';
+    
+llh=-nllh;
 
 % asymptotic standard errors
 cov=inv(hess);

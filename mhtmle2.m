@@ -3,7 +3,7 @@ function [par_out,stde_out,llh_out,opt_out] = mhtmle(y,M,cens,x,unobs_form,shock
 % Maximum likelihood estimation of MHT model using numerical inversion of
 % the laplace transform
 %
-% Author: Tim Salimans
+% Author: Tim Salimans (minor adaptations by Jaap Abbring)
 %
 % INPUT:
 %   - y, n x 1 double or integer vector of observations
@@ -29,6 +29,11 @@ function [par_out,stde_out,llh_out,opt_out] = mhtmle(y,M,cens,x,unobs_form,shock
 %
 % ////////////////////////////////////////////////////////////////////////
 
+% choose alternative information matrix estimator 
+altim = 'fd'; % 'fd': Hessian calculated using finite diff analyt score
+              % 'op': OPG estimator
+              % default: Hessian outputted by fminunc (BFGS) 
+             
 % check input
 if size(y,1)<size(y,2);
     y=y';
@@ -130,10 +135,7 @@ while (length(llh)<3 || sum(llh>max(llh)-(1e-3)*n)<3 || ~pd) && iter<10
     options=optimset('GradObj','on','LargeScale','off','HessUpdate','bfgs','Display','off','MaxIter',1000);
     eval(['[estpar,nllh,eflag,output,grad,hessian]=fminunc(@(par)mhtobj2(@'...
         unobs_form shock_form ',par,y,M,cens,x,nrunobs,nrshocks),startvalues,options);']);
-        
-%     eval(['[estpar,nllh,eflag,output]=ktrlink(@(par)mhtobj(@'...
-%         unobs_form shock_form ',par,y,cens,x,nrunobs,nrshocks),startvalues,[],[],[],[],[],[],[],options);']);
-    
+            
     % check and save results
     if eflag>0
         llh=[llh -nllh];
@@ -203,6 +205,20 @@ else
     end
 end
 par_out.beta=par(end-k+1:end)';
+
+% alternative IM estimates
+if isequal(altim,'fd')
+    disp('Using finite differences of analytical score to estimate information matrix!')
+    eval(['mlehess=numjac(@(dpar)mhtgrad(@'...
+    unobs_form shock_form ',dpar,y,cens,x,nrunobs,nrshocks),par);']);
+    mlehess=0.5*(mlehess+mlehess');
+elseif isequal(altim,'op')
+    disp('Using OPG estimator of information matrix!')
+    eval(['[opprobs,opgrad]=numinvlap(@'...
+        unobs_form shock_form ',par,y,cens,x,nrunobs,nrshocks);']);
+    opgrad=-opgrad.*(1./opprobs);
+    mlehess = opgrad'*opgrad;
+end
 
 % retieve asymptotic standard errors using delta rule
 if nargout>=2
