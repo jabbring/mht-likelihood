@@ -54,7 +54,7 @@ Users can extend the set of specifications by adding different functions `<heter
 - [mhtgrad.m](https://github.com/jabbring/mht-likelihood/blob/master/mhtgrad.m) - same as `mhtobj.m`, but only returning the gradient
 - [mhtgrad2.m](https://github.com/jabbring/mht-likelihood/blob/master/mhtgrad2.m) - same as `mhtobj2.m`, but only returning the gradient
 - [lhmigauss.m](https://github.com/jabbring/mht-likelihood/blob/master/lhmigauss.m) - likelihood of the MHT model (calculated using explicit expressions for the Gaussian case)
-- [nllhmigauss.m](https://github.com/jabbring/mht-likelihood/blob/master/nllhmigauss.m) - minus the log likelihood of the MHT model (calculated using explicit expressions for the Gaussian case) abd its gradient with respect to the parameter vector
+- [nllhmigauss.m](https://github.com/jabbring/mht-likelihood/blob/master/nllhmigauss.m) - minus the log likelihood of the MHT model (calculated using explicit expressions for the Gaussian case) and its gradient with respect to the parameter vector
 - [nllhmph.m](https://github.com/jabbring/mht-likelihood/blob/master/nllhmph.m) - minus the log likelihood of the Weibull MPH model and its gradient with respect to the parameter vector
 
 ### 4. Maximum likelihood estimation
