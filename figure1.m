@@ -2,7 +2,8 @@
 % Abbring and Salimans (2021), Figure 1 (fka laplace/invtest.m)
 % - Approximation Error of the Log Likelihood for Various M
 %
-% Dependencies: strkdur.asc migaussmle.m lhmigauss.m numinvlap.m
+% Dependencies: strkdur.asc migaussmle.m lhmigauss.m numinvlap.m 
+%               numinvlap2.m
 % Output: - fig1.csv
 % //////////////////////////////////////////////////////////////////////
 

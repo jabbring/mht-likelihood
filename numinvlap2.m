@@ -3,7 +3,7 @@ function [probs, grad] = numinvlap(ltfun,par,y,M,varargin)
 % Numerical inversion of Laplace transform of distribution MHT model
 % with model-specific laplace transform function 'ltfun'
 %
-% Author: Tim Salimans
+% Author: Tim Salimans (minor edit by Jaap Abbring)
 %
 % INPUT:
 % - ltfun, function handle to calculate exp(psi(s)*t) times laplace transform
@@ -42,7 +42,7 @@ sqrz=sqrt(zvar);
 lap0inv=(sqrz-1)/var;
 lap0invgrad=-1./sqrz;
 
-% calculate exp(psi(x)*t+log(t)) times laplace transform
+% calculate exp(psi(Lambda_BM(z))*t+I(~cens).log(t)) x Laplace transform
 if nargout==1
     [lapprod,lapgrad]=ltfun(par,lap0inv,y,varargin{:});
 else

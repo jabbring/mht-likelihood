@@ -209,13 +209,13 @@ par_out.beta=par(end-k+1:end)';
 % alternative IM estimates
 if isequal(altim,'fd')
     disp('Using finite differences of analytical score to estimate information matrix!')
-    eval(['mlehess=numjac(@(dpar)mhtgrad(@'...
-    unobs_form shock_form ',dpar,y,cens,x,nrunobs,nrshocks),par);']);
-    mlehess=0.5*(mlehess+mlehess');
+    eval(['mlehess=numjac(@(dpar)mhtgrad2(@'...
+        unobs_form shock_form ',dpar,y,M,cens,x,nrunobs,nrshocks),par);']);
+    mlehess=0.5*mlehess+0.5*mlehess';
 elseif isequal(altim,'op')
     disp('Using OPG estimator of information matrix!')
-    eval(['[opprobs,opgrad]=numinvlap(@'...
-        unobs_form shock_form ',par,y,cens,x,nrunobs,nrshocks);']);
+    eval(['[opprobs,opgrad]=numinvlap2(@'...
+        unobs_form shock_form ',par,y,M,cens,x,nrunobs,nrshocks);']);
     opgrad=-opgrad.*(1./opprobs);
     mlehess = opgrad'*opgrad;
 end

@@ -1,6 +1,10 @@
 % //////////////////////////////////////////////////////////////////////
 % Abbring and Salimans (2021), Table 1 Column I-V (fka laplace/test.m)
 % - Comparison with MLE based on Exact Mixed Inverse Gaussian Likelihood
+%
+% dependencies: strkdur.asc migaussmle.m
+% output:   tab1mig.tex - LaTeX version of Table 1 inverse Gaussian
+%           tab1migtimes.tex - LaTeX code with comp times inv Gaussian
 % //////////////////////////////////////////////////////////////////////
 
 %% clear screen and workspace and set seed

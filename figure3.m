@@ -18,7 +18,7 @@ rng(230670);
 %% settings
 dispplot = false; % set to true to have script plot results
 
-n=1e5; % sample size
+n=1e3; % sample size
 neval = 250;
 nbins = 100;
 k=1; % number of regressors

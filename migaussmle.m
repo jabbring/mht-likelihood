@@ -39,7 +39,6 @@ end
 
 % maximize the loglikelihood function
 objfun=@(par)nllhmigauss(par,y,cens,x,nrunobs);
-%options=optimset('Display','off','GradObj','on','AlwaysHonorConstraints','bounds','TolFun',tc,'TolX',tp); %'GradConstr','on',
 options=optimset('Display','off','GradObj','on','AlwaysHonorConstraints','bounds');
 [parMLE,nllh,opt]=fmincon(objfun,startvalues,A,b,[],[],lb,ub,[],options);
 
@@ -66,6 +65,5 @@ end
     
 llh=-nllh;
 
-% asymptotic standard errors
+% asymptotic covariance matrix
 cov=inv(hess);
-%stderr=sqrt(diag(cov));

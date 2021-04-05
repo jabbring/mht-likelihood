@@ -210,8 +210,8 @@ par_out.beta=par(end-k+1:end)';
 if isequal(altim,'fd')
     disp('Using finite differences of analytical score to estimate information matrix!')
     eval(['mlehess=numjac(@(dpar)mhtgrad(@'...
-    unobs_form shock_form ',dpar,y,cens,x,nrunobs,nrshocks),par);']);
-    mlehess=0.5*(mlehess+mlehess');
+        unobs_form shock_form ',dpar,y,cens,x,nrunobs,nrshocks),par);']);
+    mlehess=0.5*mlehess+0.5*mlehess';
 elseif isequal(altim,'op')
     disp('Using OPG estimator of information matrix!')
     eval(['[opprobs,opgrad]=numinvlap(@'...

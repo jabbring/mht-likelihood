@@ -1,7 +1,7 @@
-function [lh, grad]=lhmigauss(par,y,cens,x,nrunobs)
+function lh=lhmigauss(par,y,cens,x,nrunobs)
+%function [lh, grad]=lhmigauss(par,y,cens,x,nrunobs)
 % ///////////////////////////////////////////////////////////////////////
-% Calculate negative loglikelihood mixed inverse Gaussian model
-% Calculate analytical derivatives
+% Calculate likelihood mixed inverse Gaussian model
 % //////////////////////////////////////////////////////////////////////
 
 % get parameters
@@ -24,13 +24,15 @@ lh=zeros(size(y));
 for i=1:nrunobs
     % noncensored observations
     if sum(~cens)>0
-        [igpdf{i}, pdfgrad{i}]=igausspdf(y(~cens),v(i)*funx(~cens)/mu,(v(i)*funx(~cens)).^2/var);
+%        [igpdf{i}, pdfgrad{i}]=igausspdf(y(~cens),v(i)*funx(~cens)/mu,(v(i)*funx(~cens)).^2/var);
+        igpdf{i}=igausspdf(y(~cens),v(i)*funx(~cens)/mu,(v(i)*funx(~cens)).^2/var); 
         lh(~cens)=lh(~cens)+p(i)*igpdf{i};
     end
 
     % random right censored observations
     if sum(cens)>0
-        [igcdf{i}, cdfgrad{i}]=igausscdf(y(cens),v(i)*funx(cens)/mu,(v(i)*funx(cens)).^2/var);
+%        [igcdf{i}, cdfgrad{i}]=igausscdf(y(cens),v(i)*funx(cens)/mu,(v(i)*funx(cens)).^2/var);
+        igcdf{i}=igausscdf(y(cens),v(i)*funx(cens)/mu,(v(i)*funx(cens)).^2/var);
         lh(cens)=lh(cens)+p(i)*(1-igcdf{i});
     end
 end

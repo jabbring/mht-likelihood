@@ -3,11 +3,9 @@
 % - Maximum Likelihood Estimates for Kennan’s (1985) Strike Duration 
 %   Data
 %
-% dependencies: strkdur.asc mhtmle.m
-% output:   tab1.tex - LaTeX version of Table 1
-%           tab1times.tex - LaTeX code with comp times Table 1
-%           tab1.mat - contains structure `est` with estimates and 
-%                       corresponding llh column IV for figure4.m
+% dependencies: strkdur.asc mhtmle2.m
+% output:   tab1lowM.tex - LaTeX version of Table 1 for low M
+%           tab1lowMtimes.tex - LaTeX code with comp times Table 1 low M
 % //////////////////////////////////////////////////////////////////////
 
 %% clear screen and workspace
@@ -64,7 +62,7 @@ for i = 1:6
 end
 
 %% Export tex file with computation times
-f1=fopen('tab1timeslowM.tex','w'); 
+f1=fopen('tab1lowMtimes.tex','w'); 
 fprintf(f1,'Computation times (low $M$; in seconds):');
 fprintf(f1,'\\begin{tabular}{cccccc}');
 fprintf(f1,'I&II&III&IV&V&VI\\\\');
