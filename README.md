@@ -70,8 +70,8 @@ Users can extend the set of specifications by adding different functions `<heter
 
 ### 6. Numerical differentiation
 
-- [numgrad.m](https://github.com/jabbring/mht-likelihood/blob/master/numgrad.m)n - calculation of gradient using finite (central) differences
-- [numjac.m](https://github.com/jabbring/mht-likelihood/blob/master/numjac.m)n - calculation of Jacobian using finite (central) differences (used to compute Hessian from gradient functions)
+- [numgrad.m](https://github.com/jabbring/mht-likelihood/blob/master/numgrad.m) - calculation of gradient using finite (central) differences
+- [numjac.m](https://github.com/jabbring/mht-likelihood/blob/master/numjac.m) - calculation of Jacobian using finite (central) differences (used to compute Hessian from gradient functions)
 
 ## Data
 
