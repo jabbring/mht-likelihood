@@ -10,7 +10,7 @@ datafile = strkdur.asc
 figobjects = fig1.csv fig1times.tex fig2.csv fig3hist.csv fig3invlap.csv fig4.csv fig4.tex weibullmph.mat 
 tabobjects = tab1.tex tab1times.tex tab1.mat tab1lowM.tex tab1lowMtimes.tex tab1mig.tex tab1migtimes.tex
 othobjects = chckgrad.tex
-texobjects = $(rfile).aux $(rfile).brf $(rfile).log $(rfile).out $(rfile).synctex.gz
+texobjects = $(rfile).aux $(rfile).brf $(rfile).log $(rfile).out $(rfile).synctex.gz  $(rfile).fls $(rfile).fdb_latexmk
 
 specs = gammagamma.m gammapoint.m pointgamma.m pointpoint.m
 mhtobj = mhtobj.m numinvlap.m

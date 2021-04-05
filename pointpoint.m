@@ -40,8 +40,8 @@ lapexp=s+0.5*var*s.^2;
 
 % incorporate shocks
 for j=1:nrshocks
-     lapexp=lapexp+lambda(j)*(exp(s*nu(j))-1-s*(nu(j)/(1+nu(j)^2)));
-    %lapexp=lapexp+lambda(j)*(exp(s*nu(j))-1); % JHA: removed compensation shocks
+    %lapexp=lapexp+lambda(j)*(exp(s*nu(j))-1-s*(nu(j)/(1+nu(j)^2)));
+    lapexp=lapexp+lambda(j)*(exp(s*nu(j))-1); % JHA: removed compensation shocks
 end
 
 % pre-allocate
