@@ -3,8 +3,8 @@
 % - Approximate Probability Density and Histogram of Simulated Values 
 %    of ln T for a Specification With Shocks and Heterogeneity
 %
-% dependencies: simmht.m numinvlap.m
-% output:   fig3invlap.csv  - data approximate probability density
+% dependencies: simmht.m numinvlap.m $(specs)
+% output:   fig3invlap.csv - data approximate probability density
 %           fig3hist.csv - data histogram
 % //////////////////////////////////////////////////////////////////////
 
@@ -18,7 +18,7 @@ rng(230670);
 %% settings
 dispplot = false; % set to true to have script plot results
 
-n=1e3; % sample size
+n=1e6; % sample size
 neval = 250;
 nbins = 100;
 k=1; % number of regressors

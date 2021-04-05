@@ -2,7 +2,9 @@
 % Abbring and Salimans (2021), extra calculations (fka laplace/test3.m)
 % - Check analytical gradients against numerical ones
 %
-% Dependencies: numgrad.m strkdur.asc weibullmph.mat
+% Dependencies: strkdur.asc weibullmph.mat numgrad.m mhtobj.m nllhmph.m
+%               $(specs)
+% Output: chckgrad.tex
 % //////////////////////////////////////////////////////////////////////
 
 %% clear screen and workspace

@@ -3,8 +3,8 @@
 % - Reads preferred estimates, calculates Weibull MPH estimates, and 
 %   writes data for Figure 4. Aggregate Strike End Hazard Rates
 %
-% dependencies: tab1.mat igausscdf.m igausspdf.m weibullcdf.m 
-%               weibullpdf.m
+% dependencies: strkdur.asc tab1.mat igausscdf.m igausspdf.m 
+%               weibullcdf.m weibullpdf.m nllhmph.m
 % output:   fig4.csv - data aggregate strike end hazard rates
 %           fig4.tex - LaTeX macros MPH results cited in text
 %           weibullmph.mat - MPH results for gradient check (numgrad.m) 

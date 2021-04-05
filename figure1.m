@@ -3,8 +3,8 @@
 % - Approximation Error of the Log Likelihood for Various M
 %
 % Dependencies: strkdur.asc migaussmle.m lhmigauss.m numinvlap.m 
-%               numinvlap2.m
-% Output: - fig1.csv
+%               numinvlap2.m pointpoint.m
+% Output: fig1.csv fig1times.tex
 % //////////////////////////////////////////////////////////////////////
 
 %% clear screen and workspace and set seed

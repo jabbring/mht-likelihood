@@ -2,8 +2,8 @@
 % Abbring and Salimans (2021), Figure 2 (fka laplace/test2.m )
 % - Approximation Error of the Log Inverse Gaussian Density Function
 %
-% Dependencies: numinvlap2 scatterplot
-% Output: - fig2.csv
+% Dependencies: numinvlap2 pointpoint.m
+% Output: fig2.csv
 % //////////////////////////////////////////////////////////////////////
 
 %% clear screen and workspace

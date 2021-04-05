@@ -38,9 +38,9 @@ for i = 1:6
     % last 4 arguments are: unobs_type, shock_type, nrunobs (L), nrshocks 
     % (Q); unobs_type and shock_type can be either 'gamma' or 'point'
     % disp(opt)
-    if i==4
-        save('tab1','est','llh') % save estimates IV for Figure 4
-    end
+    %if i==4
+    %    save('tab1lowM','est','llh') % save estimates IV for Figure 4
+    %end
     loglik(i)=llh;
     estimates(i,1)=est.bm_var; % sigma^2
     if Q>0

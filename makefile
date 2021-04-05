@@ -6,20 +6,19 @@
 # variables
 rfile = replication
 texopt = -interaction=batchmode
+datafile = strkdur.asc
 figobjects = fig1.csv fig1times.tex fig2.csv fig3hist.csv fig3invlap.csv fig4.csv fig4.tex weibullmph.mat 
-tabobjects = tab1.tex tab1times.tex tab1.mat tab1mig.tex tab1migtimes.tex tab1lowM.tex tab1lowMtimes.tex 
+tabobjects = tab1.tex tab1times.tex tab1.mat tab1lowM.tex tab1lowMtimes.tex tab1mig.tex tab1migtimes.tex
 othobjects = chckgrad.tex
 texobjects = $(rfile).aux $(rfile).brf $(rfile).log $(rfile).out $(rfile).synctex.gz
 
 specs = gammagamma.m gammapoint.m pointgamma.m pointpoint.m
-numinvlap = numinvlap.m $(specs)
-mhtobj = mhtobj.m $(numinvlap)
-mhtgrad = mhtgrad.m $(numinvlap)
-mhtmle = $(mhtobj) $(mhtgrad) $(numinvlap) numjac.m
-numinvlap2 = numinvlap2.m $(specs)
-mhtobj2 = mhtobj2.m $(numinvlap2)
-mhtgrad2 = mhtgrad2.m $(numinvlap2)
-mhtmle = $(mhtobj2) $(mhtgrad2) $(numinvlap2) numjac.m
+mhtobj = mhtobj.m numinvlap.m
+mhtgrad = mhtgrad.m numinvlap.m
+mhtmle = mhtmle.m $(specs) $(mhtobj) $(mhtgrad) numinvlap.m numjac.m
+mhtobj2 = mhtobj2.m numinvlap2.m
+mhtgrad2 = mhtgrad2.m numinvlap2.m
+mhtmle2 = mhtmle2.m $(specs) $(mhtobj2) $(mhtgrad2) numinvlap2.m numjac.m
 
 igspecs = igausscdf.m igausspdf.m
 nllhmigauss = nllhmigauss.m $(igspecs)
@@ -50,29 +49,29 @@ help:
 # replication figures
 figures: $(figobjects)
 
-fig1.csv fig1times.tex: figure1.m strkdur.asc $(migaussmle) $(lhmigauss) $(numinvlap) $(numinvlap2)
+fig1.csv fig1times.tex: figure1.m $(datafile) $(migaussmle) $(lhmigauss) numinvlap.m numinvlap2.m pointpoint.m
 	matlab -batch figure1
 
-fig2.csv: figure2.m $(numinvlap2)
+fig2.csv: figure2.m numinvlap2.m pointpoint.m
 	matlab -batch figure2
 
-fig3hist.csv fig3invlap.csv: figure3.m $(simmht) $(numinvlap) 
+fig3hist.csv fig3invlap.csv: figure3.m $(simmht) numinvlap.m $(specs)
 	matlab -batch figure3
 
-fig4.csv fig4.tex weibullmph.mat: figure4.m tab1.mat $(igspecs) $(mphspecs) $(nllhmph) 
+fig4.csv fig4.tex weibullmph.mat: figure4.m $(datafile) tab1.mat $(igspecs) $(mphspecs) $(nllhmph) 
 	matlab -batch figure4
 
 # replication tables
 tables: $(tabobjects)
 
-tab1.tex tab1times tab1.mat: table1.m strkdur.asc $(mhtmle)
+tab1.tex tab1times tab1.mat: table1.m $(datafile) $(mhtmle)
 	matlab -batch table1
 
-tab1mig.tex tab1migtimes: table1mig.m strkdur.asc $(migaussmle)
-	matlab -batch table1mig
-
-tab1lowM.tex tab1lowMtimes: table1lowM.m strkdur.asc $(mhtmle2)
+tab1lowM.tex tab1lowMtimes: table1lowM.m $(datafile) $(mhtmle2)
 	matlab -batch table1lowM
+
+tab1mig.tex tab1migtimes: table1mig.m $(datafile) $(migaussmle)
+	matlab -batch table1mig
 
 # run pdfLaTeX to create output file
 replication.pdf: $(figobjects) $(tabobjects) $(othobjects) replication.tex
@@ -84,7 +83,7 @@ replication.pdf: $(figobjects) $(tabobjects) $(othobjects) replication.tex
 # other checks 
 other: $(othobjects)
 
-chckgrad.tex: checkgradient.m strkdur.asc weibullmph.mat numgrad.m $(mhtobj) $(nllhmph) 
+chckgrad.tex: checkgradient.m $(datafile) numgrad.m $(mhtobj) $(specs) weibullmph.mat $(nllhmph)
 	matlab -batch checkgradient
 
 # remove output
