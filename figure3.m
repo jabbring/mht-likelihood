@@ -6,6 +6,7 @@
 % dependencies: simmht.m numinvlap.m $(specs)
 % output:   fig3invlap.csv - data approximate probability density
 %           fig3hist.csv - data histogram
+%           fig3times.tex - time to compute pdf Fig 3 100,000 times
 % //////////////////////////////////////////////////////////////////////
 
 %% clear screen and workspace and set seed
@@ -77,8 +78,15 @@ cens=(y==ymax);
 % smoothing
 [fsmooth,xi] = ksdensity(log(y),'kernel','epanechnikov','width',...
         5*sqrt(mean(log(y).^2)-mean(log(y))^2)/sqrt(n),'npoints',nbins);
+% pdf of ln(T) calculated via LT inversion
 probs=numinvlap(eval(['@' unobstype shocktype]),par,exp(xi'),false,...
                                     ones(length(xi),1),nrunobs,nrshocks);
+% test how long it takes to calculate 100000 pdfs
+testtimes=linspace(exp(-3),exp(4),100000)';
+tic
+testpdf=numinvlap(eval(['@' unobstype shocktype]),par,testtimes,false,...
+                                    ones(100000,1),nrunobs,nrshocks);
+hundredKtime=toc;
 
 % histogram
 intervalsize = (xi(end)-xi(1))/(nbins-1);
@@ -99,6 +107,10 @@ if dispplot
     ylabel({'Density of ln T'},'LineWidth',2,...
         'FontSize',14);
 end
+
+f1=fopen('fig3times.tex','w'); 
+fprintf(f1,'Note: Calculating the pdf of ln(t) in Figure 3 100,000 times takes $%1.3f$ seconds.\n',hundredKtime);
+fclose(f1);
 
 %% Export data to csv files for TikZ
 

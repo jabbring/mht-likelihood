@@ -7,7 +7,7 @@
 rfile = replication
 texopt = -interaction=batchmode
 datafile = strkdur.asc
-figobjects = fig1.csv fig1times.tex fig2.csv fig3hist.csv fig3invlap.csv fig4.csv fig4.tex weibullmph.mat 
+figobjects = fig1.csv fig1times.tex fig2.csv fig3hist.csv fig3invlap.csv fig3times.tex fig4.csv fig4.tex weibullmph.mat 
 tabobjects = tab1.tex tab1times.tex tab1.mat tab1lowM.tex tab1lowMtimes.tex tab1mig.tex tab1migtimes.tex
 othobjects = chckgrad.tex
 texobjects = $(rfile).aux $(rfile).brf $(rfile).log $(rfile).out $(rfile).synctex.gz  $(rfile).fls $(rfile).fdb_latexmk
@@ -55,7 +55,7 @@ fig1.csv fig1times.tex: figure1.m $(datafile) $(migaussmle) $(lhmigauss) numinvl
 fig2.csv: figure2.m numinvlap2.m pointpoint.m
 	matlab -batch figure2
 
-fig3hist.csv fig3invlap.csv: figure3.m $(simmht) numinvlap.m $(specs)
+fig3hist.csv fig3invlap.csv fig3times.tex: figure3.m $(simmht) numinvlap.m $(specs)
 	matlab -batch figure3
 
 fig4.csv fig4.tex weibullmph.mat: figure4.m $(datafile) tab1.mat $(igspecs) $(mphspecs) $(nllhmph) 

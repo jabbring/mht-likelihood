@@ -12,7 +12,7 @@ clear
 clc
 format long
 
-est=false;
+est=false; % false=as in paper; true=use MIG ML estimates
 rng(230670) % seed for random starting values
 
 %% settings
@@ -22,7 +22,9 @@ nrunobs=4;
 nrshocks=0;
 
 nrsim = 100;
-
+if est
+        nrsim=1;
+end
 %% read strike data
 rawdata=load('strkdur.asc');
 
@@ -108,10 +110,11 @@ if dispplot
 end
 
 f1=fopen('fig1times.tex','w'); 
-fprintf(f1,'Note: Mean calculation times are $%0.5e$ seconds (analytical) and ',...
+fprintf(f1,'Note: Mean calculation times for Figure 1 are $%0.5e$ seconds ',...
     mean(timea));
-fprintf(f1,'$%0.5e$ seconds (numerical inversion), so that ',mean(timen));
-fprintf(f1,'mean time numerical $=%6.2f\\times$ mean time analytical\n',...
+fprintf(f1,'(analytical) and $%0.5e$ seconds (numerical inversion), so that ',...
+    mean(timen));
+fprintf(f1,'mean time numerical $=%6.2f\\times$ mean time analytical.\n',...
     mean(timen)/mean(timea));
 fclose(f1);
 
