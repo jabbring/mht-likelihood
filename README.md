@@ -4,7 +4,7 @@ This repository contains MATLAB code for replicating the numerical results in [A
 
 ## Makefile and scripts
 
-The results in [Abbring and Salimans (2021)](https://arxiv.org/abs/1905.03463) were obtained using [v1.1.0](https://github.com/jabbring/mht-likelihood/releases/tag/v1.1.0) of this package, by running `make` on a MacBook Pro (2018, 15inch, 2.9GHz 6-Core Intel Core i9, 32 GB 2400 MHz DDR4) with macOS 10.15.7, MATLAB R2020b (with Optimization Toolbox), and TeX Live 2018. As specified in the [makefile](https://github.com/jabbring/mht-likelihood/blob/master/makefile), this executes the MATLAB scripts
+The results in [Abbring and Salimans (2021)](https://arxiv.org/abs/1905.03463) were obtained using [v1.1.1](https://github.com/jabbring/mht-likelihood/releases/tag/v1.1.1) of this package, by running `make` on a MacBook Pro (2018, 15inch, 2.9GHz 6-Core Intel Core i9, 32 GB 2400 MHz DDR4) with macOS 10.15.7, MATLAB R2020b (with Optimization Toolbox), and TeX Live 2018. As specified in the [makefile](https://github.com/jabbring/mht-likelihood/blob/master/makefile), this executes the MATLAB scripts
 
 - [figure1.m](https://github.com/jabbring/mht-likelihood/blob/master/figure1.m) -  replicates Figure 1
 - [figure2.m](https://github.com/jabbring/mht-likelihood/blob/master/figure2.m) -  replicates Figure 2
@@ -40,7 +40,7 @@ Users can extend the set of specifications by adding different functions `<heter
 
 ### 2. Probability densities and cumulate distributions
 
-- [numinvlap.m](https://github.com/jabbring/mht-likelihood/blob/master/numinvlap.m) - MHT pdf (multiplied by the evaluation time t for numerical stability) and cdf values (calculated by Laplace transform inversion) and their gradients with respect to the parameter vector
+- [numinvlap.m](https://github.com/jabbring/mht-likelihood/blob/master/numinvlap.m) - MHT pdf (of ln T, so t.f_T(t)) and cdf values (calculated by Laplace transform inversion) and their gradients with respect to the parameter vector
 - [numinvlap2.m](https://github.com/jabbring/mht-likelihood/blob/master/numinvlap2.m) - idem, but with input of design parameter `M`
 - [igausscdf.m](https://github.com/jabbring/mht-likelihood/blob/master/igausscdf.m) - inverse Gaussian cdf
 - [igausspdf.m](https://github.com/jabbring/mht-likelihood/blob/master/igausspdf.m) - inverse Gaussian pdf
