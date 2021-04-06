@@ -40,7 +40,7 @@ Users can extend the set of specifications by adding different functions `<heter
 
 ### 2. Probability densities and cumulate distributions
 
-- [numinvlap.m](https://github.com/jabbring/mht-likelihood/blob/master/numinvlap.m) - MHT pdf (multiplied by the evaluation time t for numerical stability) and cdf values (calculated by Laplace transform inversion) and their gradients with respect to the parameter vector
+- [numinvlap.m](https://github.com/jabbring/mht-likelihood/blob/master/numinvlap.m) - MHT pdf (of ln T, so t.f_T(t)) and cdf values (calculated by Laplace transform inversion) and their gradients with respect to the parameter vector
 - [numinvlap2.m](https://github.com/jabbring/mht-likelihood/blob/master/numinvlap2.m) - idem, but with input of design parameter `M`
 - [igausscdf.m](https://github.com/jabbring/mht-likelihood/blob/master/igausscdf.m) - inverse Gaussian cdf
 - [igausspdf.m](https://github.com/jabbring/mht-likelihood/blob/master/igausspdf.m) - inverse Gaussian pdf
