@@ -11,7 +11,7 @@ The results in [Abbring and Salimans (2021)](https://arxiv.org/abs/1905.03463) w
 - [figure3.m](https://github.com/jabbring/mht-likelihood/blob/master/figure3.m) -  replicates Figure 3
 - [table1.m](https://github.com/jabbring/mht-likelihood/blob/master/table1.m) - replicates Table 1 and estimates a version with gamma shocks
 - [table1lowM.m](https://github.com/jabbring/mht-likelihood/blob/master/table1lowM.m) - recalculates Table 1 with *M=15*
-- [table1mig.m](https://github.com/jabbring/mht-likelihood/blob/master/table1mig.m) - recalculates Columns I-V of table one using the exact likelihood for the Gaussian case
+- [table1mig.m](https://github.com/jabbring/mht-likelihood/blob/master/table1mig.m) - recalculates Columns I-V of Table 1 using the exact likelihood for the Gaussian case
 - [figure4.m](https://github.com/jabbring/mht-likelihood/blob/master/figure4.m) - replicates Figure 4
 - [checkgradient.m](https://github.com/jabbring/mht-likelihood/blob/master/checkgradient.m) - checks the analytic gradients against numerical ones
 
