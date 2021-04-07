@@ -61,8 +61,24 @@ for i = 1:6
     stderrors(i,10:9+L)=ses.unobs_p(srtidx);
 end
 
-%% Export tex file with computation times
+% Column VI with gamma shocks
+fprintf('Calculating Table 1 Column 6 with gamma shocks\n',i)
+L = 5; % nrunobs
+Q = 1; % nrshocks
+[est,ses,llh,opt]=mhtmle(y,false,x,'point','gamma',L,Q);
+    % last 4 arguments are: unobs_type, shock_type, nrunobs (L), nrshocks 
+    % (Q); unobs_type and shock_type can be either 'gamma' or 'point'
+    % disp(opt)
+
+
+%% Export tex file with computation times (incl macros only cited in replication doc)
 f1=fopen('tab1times.tex','w'); 
+fprintf(f1,'\\def\\gammalambda{$%.3e$}\n',est.shock_lambda);
+fprintf(f1,'\\def\\gammatau{$%.3e$}\n',est.shock_rho);
+fprintf(f1,'\\def\\gammaomega{$%.3e$}\n',est.shock_nu);
+fprintf(f1,'\\def\\gammallh{$%6.1f$}\n',llh);
+fprintf(f1,'\\def\\gammamintdivo{$%6.3f$}\n',-est.shock_rho/est.shock_nu);
+
 fprintf(f1,'Computation times (in seconds):');
 fprintf(f1,'\\begin{tabular}{cccccc}');
 fprintf(f1,'I&II&III&IV&V&VI\\\\');
