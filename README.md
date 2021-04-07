@@ -13,7 +13,7 @@ The results in [Abbring and Salimans (2021)](https://arxiv.org/abs/1905.03463) w
 - [table1lowM.m](https://github.com/jabbring/mht-likelihood/blob/master/table1lowM.m) - recalculates Table 1 with *M=15*
 - [table1mig.m](https://github.com/jabbring/mht-likelihood/blob/master/table1mig.m) - recalculates Columns I-V of Table 1 using the exact likelihood for the Gaussian case
 - [figure4.m](https://github.com/jabbring/mht-likelihood/blob/master/figure4.m) - replicates Figure 4
-- [checkgradient.m](https://github.com/jabbring/mht-likelihood/blob/master/checkgradient.m) - checks the analytic gradients against numerical ones
+- [checkgradient.m](https://github.com/jabbring/mht-likelihood/blob/master/checkgradient.m) - checks analytic gradients against numerical ones
 
 and then runs pdfTeX on [replication.tex](https://github.com/jabbring/mht-likelihood/blob/master/replication.tex), which depends on `csv` and `tex` files outputted by MATLAB in the previous step, to display the resulting figures and tables in [replication.pdf](https://github.com/jabbring/mht-likelihood/blob/master/replication.pdf). As an extra check, the scripts for computing Figures 1-4 can be adapted, by changing `dispplot=false` into `dispplot=true`, to plot these figures directly. 
 
