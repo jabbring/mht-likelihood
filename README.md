@@ -85,3 +85,5 @@ Users can extend the set of specifications by adding different functions `<heter
 We welcome the use of this software under an [MIT license](https://github.com/jabbring/mht-likelihood/blob/master/LICENSE).
 
 &copy; 2020 Jaap H. Abbring and Tim Salimans
+
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.4670373.svg)](https://doi.org/10.5281/zenodo.4670373)
