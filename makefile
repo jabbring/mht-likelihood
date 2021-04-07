@@ -50,6 +50,7 @@ help:
 figures: $(figobjects)
 
 fig1.csv fig1times.tex: figure1.m $(datafile) $(migaussmle) $(lhmigauss) numinvlap.m numinvlap2.m pointpoint.m
+	date
 	matlab -batch figure1
 
 fig2.csv: figure2.m numinvlap2.m pointpoint.m
@@ -73,18 +74,19 @@ tab1lowM.tex tab1lowMtimes: table1lowM.m $(datafile) $(mhtmle2)
 tab1mig.tex tab1migtimes: table1mig.m $(datafile) $(migaussmle)
 	matlab -batch table1mig
 
-# run pdfLaTeX to create output file
-replication.pdf: $(figobjects) $(tabobjects) $(othobjects) replication.tex
-	pdflatex $(texopt) $(rfile).tex
-	pdflatex $(texopt) $(rfile).tex
-	open $(rfile).pdf
-	rm -f $(texobjects)
-
 # other checks 
 other: $(othobjects)
 
 chckgrad.tex: checkgradient.m $(datafile) numgrad.m $(mhtobj) $(specs) weibullmph.mat $(nllhmph)
 	matlab -batch checkgradient
+
+# run pdfLaTeX to create output file
+$(rfile).pdf: $(figobjects) $(tabobjects) $(othobjects) $(rfile).tex
+	pdflatex $(texopt) $(rfile).tex
+	pdflatex $(texopt) $(rfile).tex
+	open $(rfile).pdf
+	rm -f $(texobjects)
+	date
 
 # remove output
 clean:

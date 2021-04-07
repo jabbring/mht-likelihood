@@ -1,0 +1,137 @@
+date
+Wed Apr  7 16:11:34 CEST 2021
+matlab -batch figure1
+....................................................................................................
+matlab -batch figure2
+matlab -batch figure3
+
+n =
+
+   100
+
+matlab -batch table1
+Calculating Table 1 Column 1
+Maximizing log likelihood, random initialization 1
+Maximizing log likelihood, random initialization 2
+Maximizing log likelihood, random initialization 3
+Optimization was successful!
+Using finite differences of analytical score to estimate information matrix!
+Calculating Table 1 Column 2
+Maximizing log likelihood, random initialization 1
+Maximizing log likelihood, random initialization 2
+Maximizing log likelihood, random initialization 3
+Optimization was successful!
+Using finite differences of analytical score to estimate information matrix!
+Calculating Table 1 Column 3
+Maximizing log likelihood, random initialization 1
+Maximizing log likelihood, random initialization 2
+Maximizing log likelihood, random initialization 3
+Optimization was successful!
+Using finite differences of analytical score to estimate information matrix!
+Calculating Table 1 Column 4
+Maximizing log likelihood, random initialization 1
+Maximizing log likelihood, random initialization 2
+Maximizing log likelihood, random initialization 3
+Optimization was successful!
+Using finite differences of analytical score to estimate information matrix!
+Calculating Table 1 Column 5
+Maximizing log likelihood, random initialization 1
+Maximizing log likelihood, random initialization 2
+Maximizing log likelihood, random initialization 3
+Optimization was successful!
+Using finite differences of analytical score to estimate information matrix!
+Calculating Table 1 Column 6
+Maximizing log likelihood, random initialization 1
+Maximizing log likelihood, random initialization 2
+Maximizing log likelihood, random initialization 3
+Maximizing log likelihood, random initialization 4
+Maximizing log likelihood, random initialization 5
+Optimization was successful!
+Using finite differences of analytical score to estimate information matrix!
+Calculating Table 1 Column 6 with gamma shocks
+Maximizing log likelihood, random initialization 1
+Maximizing log likelihood, random initialization 2
+Maximizing log likelihood, random initialization 3
+Maximizing log likelihood, random initialization 4
+Maximizing log likelihood, random initialization 5
+Maximizing log likelihood, random initialization 6
+Maximizing log likelihood, random initialization 7
+Maximizing log likelihood, random initialization 8
+Maximizing log likelihood, random initialization 9
+Maximizing log likelihood, random initialization 10
+Solution might be a local optimum!
+Try using a simpler specification.
+Hessian at optimum was not positive definite, so standard errors are inaccurate.
+Using finite differences of analytical score to estimate information matrix!
+matlab -batch figure4
+Estimating Weibull MPH model
+Maximizing log likelihood, random initialization 1
+Maximizing log likelihood, random initialization 2
+Maximizing log likelihood, random initialization 3
+Optimization was successful!
+matlab -batch table1lowM
+Calculating Table 1 Column 1
+Maximizing log likelihood, random initialization 1
+Maximizing log likelihood, random initialization 2
+Maximizing log likelihood, random initialization 3
+Optimization was successful!
+Using finite differences of analytical score to estimate information matrix!
+Calculating Table 1 Column 2
+Maximizing log likelihood, random initialization 1
+Maximizing log likelihood, random initialization 2
+Maximizing log likelihood, random initialization 3
+Optimization was successful!
+Using finite differences of analytical score to estimate information matrix!
+Calculating Table 1 Column 3
+Maximizing log likelihood, random initialization 1
+Maximizing log likelihood, random initialization 2
+Maximizing log likelihood, random initialization 3
+Optimization was successful!
+Using finite differences of analytical score to estimate information matrix!
+Calculating Table 1 Column 4
+Maximizing log likelihood, random initialization 1
+Maximizing log likelihood, random initialization 2
+Maximizing log likelihood, random initialization 3
+Optimization was successful!
+Using finite differences of analytical score to estimate information matrix!
+Calculating Table 1 Column 5
+Maximizing log likelihood, random initialization 1
+Maximizing log likelihood, random initialization 2
+Maximizing log likelihood, random initialization 3
+Maximizing log likelihood, random initialization 4
+Maximizing log likelihood, random initialization 5
+Maximizing log likelihood, random initialization 6
+Optimization was successful!
+Using finite differences of analytical score to estimate information matrix!
+Calculating Table 1 Column 6
+Maximizing log likelihood, random initialization 1
+Maximizing log likelihood, random initialization 2
+Maximizing log likelihood, random initialization 3
+Maximizing log likelihood, random initialization 4
+Maximizing log likelihood, random initialization 5
+Optimization was successful!
+Using finite differences of analytical score to estimate information matrix!
+matlab -batch table1mig
+Calculating Table 1 (BM) Column 1
+Using finite differences of analytical score to estimate information matrix!
+Calculating Table 1 (BM) Column 2
+Using finite differences of analytical score to estimate information matrix!
+Calculating Table 1 (BM) Column 3
+Using finite differences of analytical score to estimate information matrix!
+Calculating Table 1 (BM) Column 4
+Using finite differences of analytical score to estimate information matrix!
+Calculating Table 1 (BM) Column 5
+Using finite differences of analytical score to estimate information matrix!
+matlab -batch checkgradient
+pdflatex -interaction=batchmode replication.tex
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018) (preloaded format=pdflatex)
+ restricted \write18 enabled.
+entering extended mode
+pdflatex -interaction=batchmode replication.tex
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018) (preloaded format=pdflatex)
+ restricted \write18 enabled.
+entering extended mode
+open replication.pdf
+rm -f replication.aux replication.brf replication.log replication.out replication.synctex.gz  replication.fls replication.fdb_latexmk
+date
+Wed Apr  7 16:14:48 CEST 2021
