@@ -1,14 +1,9 @@
 date
-Wed Apr  7 16:11:34 CEST 2021
+Wed Apr  7 16:23:01 CEST 2021
 matlab -batch figure1
 ....................................................................................................
 matlab -batch figure2
 matlab -batch figure3
-
-n =
-
-   100
-
 matlab -batch table1
 Calculating Table 1 Column 1
 Maximizing log likelihood, random initialization 1
@@ -134,4 +129,4 @@ entering extended mode
 open replication.pdf
 rm -f replication.aux replication.brf replication.log replication.out replication.synctex.gz  replication.fls replication.fdb_latexmk
 date
-Wed Apr  7 16:14:48 CEST 2021
+Wed Apr  7 16:37:01 CEST 2021
