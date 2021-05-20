@@ -78,7 +78,7 @@ Users can extend the set of specifications by adding different functions `<heter
 - [strkdur.asc](https://github.com/jabbring/mht-likelihood/blob/master/strkdur.asc) - Fixed format text file with [Kennan's (1985) strike data](https://www.ssc.wisc.edu/~jkennan/research/JEM85.pdf) (source: [Cameron and Trivedi’s, 2005, data sets page](http://cameron.econ.ucdavis.edu/mmabook/mmadata.html)).
 
 ## References
-- Abbring, Jaap H., and Tim Salimans (2021), “[The likelihood of mixed hitting times](https://doi.org/10.1016/j.jeconom.2019.08.017)”, *Journal of Econometrics* 223, 361-375.
+- Abbring, Jaap H., and Tim Salimans (2021), “[The likelihood of mixed hitting times](https://doi.org/10.1016/j.jeconom.2019.08.017)”, *Journal of Econometrics*, 223, 361-375.
 - . [doi:10.1016/j.jeconom.2019.08.017](https://doi.org/10.1016/j.jeconom.2019.08.017). [arXiv:1905.03463](https://arxiv.org/abs/1905.03463) \[econ.EM\].
 - Cameron, A. Colin, and Pravin K. Trivedi (2005), *[Microeconometrics: Methods and Applications](http://cameron.econ.ucdavis.edu/mmabook/mma.html)*, Cambridge: Cambridge University Press.
 - Kennan, John (1985), "[The duration of contract strikes in U.S. manufacturing](https://www.ssc.wisc.edu/~jkennan/research/JEM85.pdf)", *Journal of Econometrics*, 28, 5–28.
